@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.12.15)  16 DEC 2023 01:20
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.12.15)  16 DEC 2023 02:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1291,7 +1291,7 @@ Class scrreprt Warning: \float@addtolists detected!
 ] [6]
 chapter 2.
 
-Overfull \hbox (1.64236pt too wide) in paragraph at lines 497--497
+Overfull \hbox (1.64236pt too wide) in paragraph at lines 500--500
 []  \TU/lmtt/m/n/10.95 record_id redcap_event_name   redcap_survey_identifier identificao_timestamp[] 
  []
 
@@ -1299,29 +1299,29 @@ Overfull \hbox (1.64236pt too wide) in paragraph at lines 497--497
 
 ] [8] [9]
 chapter 3.
-File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54164e50a7.pdf Graphic file (type pdf)
-<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54164e50a7.pdf>
-File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b544816494f.pdf Graphic file (type pdf)
-<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b544816494f.pdf>
-File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5413746ea1.pdf Graphic file (type pdf)
-<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5413746ea1.pdf>
-File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5456c1665d.pdf Graphic file (type pdf)
-<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5456c1665d.pdf>
-File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5414b32a32.pdf Graphic file (type pdf)
-<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5414b32a32.pdf>
-File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54653153d.pdf Graphic file (type pdf)
-<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54653153d.pdf>
+File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e859af79c4.pdf Graphic file (type pdf)
+<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e859af79c4.pdf>
+File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86fd95f3c.pdf Graphic file (type pdf)
+<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86fd95f3c.pdf>
+File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e81a737db0.pdf Graphic file (type pdf)
+<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e81a737db0.pdf>
+File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86d5f6046.pdf Graphic file (type pdf)
+<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86d5f6046.pdf>
+File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e853d52d26.pdf Graphic file (type pdf)
+<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e853d52d26.pdf>
+File: C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86eb55a81.pdf Graphic file (type pdf)
+<use C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86eb55a81.pdf>
 [10
 
 ]
 ! Misplaced \noalign.
 <recently read> \noalign 
                          
-l.652 \midrule
+l.655 \midrule
                
 Here is how much of TeX's memory you used:
  41572 strings out of 476811
- 897480 string characters out of 5802018
+ 897489 string characters out of 5802018
  1935109 words of memory out of 5000000
  62946 multiletter control sequences out of 15000+600000
  564606 words of font info for 87 fonts, out of 8000000 for 9000

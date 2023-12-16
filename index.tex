@@ -242,7 +242,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, sharp corners, frame hidden, interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, sharp corners, borderline west={3pt}{0pt}{shadecolor}, breakable, interior hidden, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -276,9 +276,9 @@ people's acceptance of sleep problems. The data for this project come
 from adults between 18 and 59 living in Brazil who were surveyed online
 using REDCap.
 
-Here I do not discuss in depth the results of the analyses as it is
+Here, I do not discuss the results of the analyses in-depth as they are
 expected to be developed in a future publication in a scientific
-journal. What will be show in this project are the analyses' code and
+journal. What will be shown in this project are the analyses' code and
 outputs that usually do not fit into a traditional scientific
 publication.
 
@@ -291,17 +291,17 @@ publication.
 There are two main goals that I wish to achieve with this project.
 First, it is to make the data analysis phase of this research project
 transparent and accessible to the reader. Further, it is aimed to be a
-``living'' document, where the readers can make suggestions or critics
+``living'' document where the readers can make suggestions or critiques
 to improve the quality of the work. I also hope that by sharing the code
 and outputs in an online book format, researchers with limited or no
 knowledge of R programming can
 
 Although this document was designed to be accessed independently of the
 formal journal publication, it can also serve as supplementary material
-to the manuscript. To create a fully reproducible manuscript would be
+to the manuscript. Creating a fully reproducible manuscript would be
 challenging because the co-authors of this research project do not work
-with R. With this document at least the data analysis can be shared in a
-reproducible format.
+with R. With this document, at least the data analysis can be shared in
+a reproducible format.
 
 \hypertarget{approach}{%
 \section*{Approach}\label{approach}}
@@ -310,18 +310,18 @@ reproducible format.
 \markright{Approach}
 
 Thanks to a suggestion from Dr.~Emorie, this project was redesigned to
-the format of a HTML \href{https://quarto.org/docs/books/}{Quarto book}.
-This format allows to easily combine multiple \texttt{.qmd} documents
-into a single manuscript. Each ``chapter'' in this book correspond to a
-different step of the analysis. In this way, the scripts can be executed
-independently or bundled in a single file.
+the format of an HTML \href{https://quarto.org/docs/books/}{Quarto
+book}. This format allows us to easily combine multiple \texttt{.qmd}
+documents into a single manuscript. Each ``chapter'' in this book
+corresponds to a different step of the analysis. This way, the scripts
+can be executed independently or bundled in a single file.
 
-To create this product first I created a new project in RStudio using
-the Quarto book template. Then different \texttt{.qmd} files were
-created for each step of the analysis and saved in the general folder of
-the project. Additionally, a sub folder for the data was created,
-containing the raw data, the cleaned data from step 1, and intermediate
-outputs saved to optimize the rendering of the document.
+To create this product, I started a new RStudio project using the Quarto
+book template. Then, different \texttt{.qmd} files were created for each
+step of the analysis and saved in the project's general folder.
+Additionally, a subfolder for the data was created, containing the raw
+data, the cleaned data from step 1, and intermediate outputs saved to
+optimize the rendering of the document.
 
 The project was also made as a
 \href{https://github.com/marwincarmo/sas}{Github repository}, available
@@ -336,31 +336,34 @@ Pages, available at \url{https://marwincarmo.github.io/sas/}
 
 Several layers of concepts taught in the course were used to create this
 project. Because the ultimate goal was to create a reproducible analysis
-script, it was necessary that it was constructed in a project based
-approach, organizing the files in a hierarchical folder structure. In
-order to have the data set ready for the analyses, it had to undergo
-some steps such as the transformation of date columns, creation of new
-variables based on existing ones, re-coding, treatment of missing
-values, pivoting, string manipulation and others. Functions for
-grouping, selecting and filtering were also used frequently throughout
-the project.
+script, it needed to be constructed using a project-based approach,
+organizing the files in a hierarchical folder structure. To have the
+data set ready for the analyses, it had to undergo some steps such as
+transforming date columns, creating new variables based on existing
+ones, re-coding, treating missing values, pivoting, manipulating
+strings, and others. Functions for grouping, selecting and filtering
+were also used frequently throughout the project.
 
-Although the end product have accomplished its goal, this project has
+Although the end product has accomplished its goal, this project has
 limitations that were not addressed during its development and room for
 improvement in the future. For instance, it was not pre-registered.
 Although the current analysis plan has changed in some aspects compared
-to the initial proposition, having these differences documented would
+to the initial proposition, documenting these differences would
 facilitate the inspection of those changes by reviewers and interested
 readers. Another fundamental limitation is the lack of a data dictionary
 and a codebook. These files are important to ease the re-use of the data
-and should be developed in a near future. This project also lacks
-comments on the code chunks. Adding comments will help future
-re-analyses and is instructive for people interested in using pieces of
-the code in their own work.
+and should be developed shortly. This project also lacks comments on the
+code chunks. Adding comments will help future re-analyses and is
+instructive for people interested in using pieces of the code in their
+work.
 
-Despite my previous familiarity with R, tidyverse functions, and
-reproducible documents, this was the first project done aiming to adopt
-a totally open and reproducible framework.
+This was the first project done aiming to adopt a fully open and
+reproducible framework. Coding not only for myself but for others who
+might want to reproduce the same analyses was challenging but rewarding.
+Working on this project proved to be an exciting opportunity to put into
+practice many of the ideas discussed in class. It has also helped me
+build my intuitions in creating projects integrating human and machine
+readability.
 
 \bookmarksetup{startatroot}
 
@@ -621,12 +624,12 @@ Sample size: 1345.
 \toprule
   & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max &   \\
 \midrule
-sas\_1 & 7 & 0 & \num{3.6} & \num{1.9} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54164e50a7.pdf}\\
-sas\_2 & 7 & 0 & \num{3.4} & \num{1.8} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b544816494f.pdf}\\
-sas\_3 & 7 & 0 & \num{3.7} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5413746ea1.pdf}\\
-sas\_4 & 7 & 0 & \num{3.9} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5456c1665d.pdf}\\
-sas\_5 & 7 & 0 & \num{3.6} & \num{2.0} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5414b32a32.pdf}\\
-sas\_6 & 7 & 0 & \num{4.2} & \num{2.3} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54653153d.pdf}\\
+sas\_1 & 7 & 0 & \num{3.6} & \num{1.9} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e859af79c4.pdf}\\
+sas\_2 & 7 & 0 & \num{3.4} & \num{1.8} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86fd95f3c.pdf}\\
+sas\_3 & 7 & 0 & \num{3.7} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e81a737db0.pdf}\\
+sas\_4 & 7 & 0 & \num{3.9} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86d5f6046.pdf}\\
+sas\_5 & 7 & 0 & \num{3.6} & \num{2.0} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e853d52d26.pdf}\\
+sas\_6 & 7 & 0 & \num{4.2} & \num{2.3} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_21e86eb55a81.pdf}\\
 \bottomrule
 \end{tabular}
 \end{table}
