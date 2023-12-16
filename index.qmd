@@ -6,24 +6,23 @@ This book was developed as the final project of [Dr. Emorie Beck](https://psycho
 
 This project aims to create a comprehensive pipeline for validating the Sleep Acceptance Scale (SAS), an instrument designed to evaluate people's acceptance of sleep problems. The data for this project come from adults between 18 and 59 living in Brazil who were surveyed online using REDCap.
 
-The goal was not to discuss the results of the analyses as it is expected to be developed in a future publication in a scientific journal. What will be show in this project are the analyses' code and outputs that usually do not fit into a traditional scientific publication. 
+In this book I do not discuss in depth the results of the analyses as it is expected to be developed in a future publication in a scientific journal. What will be show in this project are the analyses' code and outputs that usually do not fit into a traditional scientific publication. 
 
-Further, it is aimed to be a "living" document
 
 ## Motivation
 
-There are two main goals that I wish to achieve with this project. First, it is 
+There are two main goals that I wish to achieve with this project. First, it is to make the data analysis phase of this research project transparent and accessible to the reader. Further, it is aimed to be a "living" document, where the readers can make suggestions or critics  to improve the quality of the work. I also hope that by sharing the code and outputs in an online book format, researchers with limited or no knowledge of R programming can 
 
-
-This project is motivated by a collective effort to promote transparency in the field of psychology. Although we did not pre register the development of the SAS, we are sharing the analysis code and data to allow the scientific community to scrutinize the final stages of the process. Furthermore, the ".html" file that contains the protocol used in the analysis should make it easier for readers without R programming knowledge to understand.
-
-Clearly state why you are creating the product. What problems does it address? How will you integrate it into your workflow? How will it change your workflow, etc. There is no minimum of maximum length, but my guess is 1-2 paragraphs.
+Although this document was designed to be accessed independently of the formal journal publication, it can also serve as supplementary material to the manuscript. To create a fully reproducible manuscript would be challenging because the co-authors of this research project do not work with R. With this document at least the data analysis can be shared in a reproducible format.
 
 ## Approach
 
-Short description of how you went about creating your product. Describe what tools you used, how you went about creating the product (e.g., built a shell and then built the rest out from there). There is no minimum of maximum length, but my guess is no less than 2-3 paragraphs.
 
-The end product will consist of a `.qmd` file and a rendered `.html` file. These files will present every process step, from data cleaning to the final analysis. All analysis scripts, raw and transformed data, and external files will be organized in folders within the project directory. Our ultimate goal is to upload this project to an open platform such as [osf.io](https://osf.io/) so other researchers can easily access and reproduce it.
+Thanks to a suggestion from Dr. Emorie, this project was redesigned to the format of a HTML [Quarto book](https://quarto.org/docs/books/). This format allows to easily combine multiple `.qmd` documents into a single manuscript. Each "chapter" in this book correspond to a different step of the analysis. In this way, the scripts can be executed independently or bundled in a single file.
+
+To create this product first I created a new project in RStudio using the Quarto book template. Then different `.qmd` files were created for each step of the analysis and saved in the general folder of the project. Additionally, a sub folder for the data was created, containing the raw data, the cleaned data from step 1, and intermediate outputs saved to optimize the rendering of the document.
+
+The project was also made as a [Github repository](https://github.com/marwincarmo/sas), available publicly. Once finished, the book was hosted as a website on Github Pages, available at 
 
 ## Reflection
 

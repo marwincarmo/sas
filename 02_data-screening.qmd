@@ -5,6 +5,8 @@ execute:
 
 # Data screening
 
+In this phase we examined response frequency and item statistics to assess item variation, distribution, and data entry. We also investigated inter-item correlations and searched for unusual response patterns by identifying multivariate outliers using Mahalanobis distance.
+
 ## Loading the required packages and data
 
 ```{r}
@@ -12,9 +14,7 @@ library(kableExtra)
 library(dplyr)
 library(ggplot2)
 library(modelsummary)
-library(faoutlier)
 library(lavaan)
-library(influence.SEM)
 library(corrplot)
 ```
 
@@ -30,8 +30,6 @@ arm1 <- mydata |>
 Sample size: `r nrow(arm1)`.
 
 ## Descriptives
-
-Response frequencies and item statistics are examined to assess whether items show sufficient variation to be able to differentiate respondents on the construct(s) investigated, and if there are any out-of-range values (data entry errors). Differences in response frequencies also provide a first hint regarding variation in item intensity/difficulty (and help interpret any later differences between IRT and FA results). Associations between items are examined to identify any negative correlations (and reverse code such items for next analyses). Plotting of multivariate outliers helps identify any respondents with idiosyncratic response patterns, which can be further investigated and either excluded (e.g. if errors are identified in the data collection/entry) or kept within the sample (if there are no valid reasons for exclusion).
 
 ### Response frequecy
 
@@ -77,7 +75,7 @@ corrplot(sas_cor, method = "shade", shade.col = NA, tl.col = "black", tl.srt = 4
           addCoef.col = "black", cl.pos = "n", order = "original", tl.cex = .8, number.cex=.8)
 ```
 
-### Inspecting outliers and leverage
+### Inspecting outliers
 
 ```{r mahal-dist, fig.width=6, fig.height=4, dpi=300}
 d2mydata <- psych::outlier(arm1[,-1], cex=.6, bad=3, ylim=c(0,130))
@@ -120,5 +118,6 @@ dfd2 |>
 ```{r inspect-ouliers}
 outliers_sas <-  which((1-pchisq(d2mydata, ncol(arm1)))<.001)
 
-arm1[as.double(names(outliers_sas)), ]
+arm1[as.double(names(outliers_sas)), ] |> 
+  kbl()
 ```

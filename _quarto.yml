@@ -19,8 +19,8 @@ book:
     - summary.qmd
     - references.qmd
   page-navigation: true
-bibliography: references.bib
-csl: apa7.csl
+bibliography: bibliography/references.bib
+csl: bibliography/apa7.csl
 
 format:
   html:

@@ -264,9 +264,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-transformation-and-selection" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="data-transformation-and-selection"><span class="header-section-number">2.3</span> Data transformation and selection</h2>
 <p>This dataset contains 588 variables and a few of them are relevant to the analyses in this project. Therefore, we will transform some of the variables of interest and then select those that we need. We want to have a clean dataset containing the columns of age, event, sex, race, marital status, education, work situation, location, sleep habits, insomnia severity index, anxiety, depression, dysfunctional beliefs and attitudes about sleep, sleep problem acceptance and sleep acceptance.</p>
-<ol type="1">
-<li>Using the <code>dplyr</code> function <code>with_groups</code> we group the data by the participants’ <code>record_id</code> and then apply the <code>tidyr</code> function <code>fill</code></li>
-</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">with_groups</span>(record_id,</span>

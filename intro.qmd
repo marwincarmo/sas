@@ -6,11 +6,6 @@ Cognitive and behavioral models of insomnia emphasize the role of sleep-related 
 
 The Sleep Problem Acceptance Questionnaire (SPAQ) [@bothelius2015] is the only measure of acceptance of sleep difficulties developed so far. Because its items were developed with a focus on people with severe sleep problems, this questionnaire has limited application with good sleepers or with those with light to mild sleep problems.  Additionally, general tools for measuring acceptance do not address sleep-related behaviors. For such reasons, we developed a new measure of sleep acceptance, titled **Sleep Acceptance Scale (SAS)**.
 
-## Purpose
-
-This project aims to outline the steps of the psychometric analyses of the SAS. It was developed as the final project of [Dr. Emorie Beck](https://psychology.ucdavis.edu/people/edbeck)'s course [Data Cleaning and Management](https://emoriebeck.github.io/psc290-data-FQ23/), taught at University of California, Davis in the Fall quarter of 2023.
-
-Each chapter was designed to show the code used to analyze the data and the decisions made throughout the process. It is also 
 
 ## Methods
 

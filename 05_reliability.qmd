@@ -15,8 +15,9 @@ mydata <- readr::read_csv("data/clean_data/clean_data.csv") |>
 ```
 
 
-
 # Reliability and Validity
+
+McDonald's omega $\omega$ and Cronbach's $\alpha$ were used to estimate internal consistency. The first measure has advantages over Cronbach's $\alpha$, as it does not assume tau equivalence (i.e., loadings are not assumed equal) or a perfect fit in CFA [@kelley2016]. Each index was calculated as the point estimate and the bias-corrected and accelerated bootstrap confidence interval (1000 bootstrap samples).
 
 ## Internal consistency
 
@@ -34,6 +35,8 @@ alpha <- readRDS("data/output/alpha.rds")
 The reliability analyses indicated an $\alpha$ = `r paste0(rd(alpha$est, 3), " [", rd(alpha$ci.lower, 3), ", ", rd(alpha$ci.upper, 3), "]")` and $\omega$ = `r paste0(rd(omega$est, 3), " [", rd(omega$ci.lower, 3), ", ", rd(omega$ci.upper, 3), "]")`.
 
 ## Convergent validity
+
+To assess convergent validity, we estimated a structural equation model where the SAS, insomnia severity, SPAQ's factors of Willingness and Active Engagement, and the HADS subscales of depression and anxiety were allowed to correlate. We expect these associations with insomnia, anxiety and depression to be positive and strong, and negative and strong with Willingness and Active Engagement (higher scores mean lower acceptance).
 
 ```{r mod-conv-validity}
 modconv <- '

@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -129,6 +148,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Validation of the Sleep Acceptance Scale</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/hadley/r4ds/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -227,6 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>McDonald’s omega <span class="math inline">\(\omega\)</span> and Cronbach’s <span class="math inline">\(\alpha\)</span> were used to estimate internal consistency. The first measure has advantages over Cronbach’s <span class="math inline">\(\alpha\)</span>, as it does not assume tau equivalence (i.e., loadings are not assumed equal) or a perfect fit in CFA <span class="citation" data-cites="kelley2016">(<a href="references.html#ref-kelley2016" role="doc-biblioref">Kelley &amp; Pornprasertmanit, 2016</a>)</span>. Each index was calculated as the point estimate and the bias-corrected and accelerated bootstrap confidence interval (1000 bootstrap samples).</p>
 <section id="internal-consistency" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="internal-consistency"><span class="header-section-number">6.1</span> Internal consistency</h2>
 <div class="cell">
@@ -238,6 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="convergent-validity" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="convergent-validity"><span class="header-section-number">6.2</span> Convergent validity</h2>
+<p>To assess convergent validity, we estimated a structural equation model where the SAS, insomnia severity, SPAQ’s factors of Willingness and Active Engagement, and the HADS subscales of depression and anxiety were allowed to correlate. We expect these associations with insomnia, anxiety and depression to be positive and strong, and negative and strong with Willingness and Active Engagement (higher scores mean lower acceptance).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>modconv <span class="ot">&lt;-</span> <span class="st">'</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -351,6 +375,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-kelley2016" class="csl-entry" role="listitem">
+Kelley, K., &amp; Pornprasertmanit, S. (2016). Confidence intervals for population reliability coefficients: <span>Evaluation</span> of methods, recommendations, and software for composite measures. <em>Psychological Methods</em>, <em>21</em>, 69–92. <a href="https://doi.org/10.1037/a0040086">https://doi.org/10.1037/a0040086</a>
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

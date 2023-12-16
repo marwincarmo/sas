@@ -25,8 +25,6 @@ head(raw_data)
 
 This dataset contains `r ncol(raw_data)` variables and a few of them are relevant to the analyses in this project. Therefore, we will transform some of the variables of interest and then select those that we need. We want to have a clean dataset containing the columns of age, event, sex, race, marital status, education, work situation, location, sleep habits, insomnia severity index, anxiety, depression, dysfunctional beliefs and attitudes about sleep, sleep problem acceptance and sleep acceptance.
 
-1. Using the `dplyr` function `with_groups` we group the data by the participants' `record_id` and then apply the `tidyr` function `fill` 
-
 ```{r}
 clean_data <- raw_data |> 
   dplyr::with_groups(record_id,

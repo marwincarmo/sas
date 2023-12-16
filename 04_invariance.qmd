@@ -5,6 +5,10 @@ execute:
 
 # Invariance
 
+We examined whether our scale's psychometric properties were equal across groups with and without insomnia symptoms and across time points, comparing baseline test scores to a second administration taken 14 days later. To do this, we tested invariance by restricting the measurement properties across groups/time in increasing levels of stringency. We tested in a sequence of factor structure (configural invariance), factor loadings (metric invariance), items' intercepts (scalar invariance), and items' residual variances (strict invariance) [@flake2021]. If a level of non-invariance was detected, no further tests were conducted. The criteria used to evaluate model fit were the chi-squared difference test for goodness of fit and alternative fit indices like $\Delta$CFI, $\Delta$RMSEA, and $\Delta$SRMR
+
+## Loading the required packages
+
 ```{r}
 library(semTools)
 library(kableExtra)
@@ -71,7 +75,8 @@ fit_long_config <- cfa(mod_long_config,
                       estimator = "DWLS", 
                       std.lv = TRUE)
 
-semTools::fitmeasures(fit_long_config, fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+semTools::fitmeasures(fit_long_config, fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler")) |> 
+  kbl(col.names = c("Index", "Value"))
 ```
 
 ### Metric invariance
@@ -90,10 +95,10 @@ fit_long_metric <- cfa(mod_long_metric, data = data_longitudinal, estimator = "D
                   parameterization = "theta", std.lv = TRUE)
 
 conf_met_long <- compareFit(fit_long_config, fit_long_metric)
-summary(conf_met_long)
 
 lavTestLRT(fit_long_config, fit_long_metric, method="satorra.bentler.2010") |> 
-  broom::tidy()
+  broom::tidy() |> 
+  kbl()
 ```
 
 ### Scalar invariance
@@ -111,7 +116,8 @@ fit_long_scalar <- cfa(mod_long_scalar, data = data_longitudinal, estimator = "D
                   parameterization = "theta", std.lv = TRUE)
 
 anova(fit_long_config, fit_long_metric, fit_long_scalar, method = "satorra.bentler.2010") |> 
-  broom::tidy()
+  broom::tidy() |> 
+  kbl()
 ```
 
 ### Strict invariance
@@ -129,7 +135,8 @@ fit_long_strict <- cfa(mod_long_strict, data = data_longitudinal, estimator = "D
                   parameterization = "theta", std.lv = TRUE)
 
 anova(fit_long_config, fit_long_metric, fit_long_scalar, fit_long_strict, method = "satorra.bentler.2010")|> 
-  broom::tidy()
+  broom::tidy() |> 
+  kbl()
 ```
 
 ### Longitudinal fit differences
@@ -186,6 +193,9 @@ configural.fit.group <- cfa(mod.config.group,
                            data = items,
                            estimator = "DWLS",
                            std.lv = TRUE)
+
+semTools::fitmeasures(configural.fit.group, fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler")) |> 
+  kbl(col.names = c("Index", "Value"))
 ```
 
 ### Metric invariance
@@ -219,72 +229,4 @@ lavaan::modindices(fit.metric.group) |>
   dplyr::arrange(-mi) |> 
   head(10) |> 
   kbl()
-```
-```{r group-fit-differences}
-inv_group <- anova(
-  configural.fit.group, fit.metric.group, method="satorra.bentler.2010") |> 
-  tibble::as.tibble()
-
-fit_stats_metric_group <- fitmeasures(fit.metric.group, 
-                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
-
-fit_stats_configural_group <- fitmeasures(configural.fit.group, 
-                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
-
-group_fitdiffs <- tibble::enframe(c(
-        fit_stats_configural_group - fit_stats_metric_group)) |> 
-  dplyr::mutate(model = c("metric"),
-                .before = name) |> 
-  tidyr::pivot_wider(names_from = "name", values_from = "value")
-```
-
-```{r fitdiffs_df, eval=FALSE}
-fitdiffs_df <- inv_long[, 5:7] |> 
-  dplyr::mutate(
-    model = c("configural", "metric", "scalar", "strict"),
-    .before = dplyr::everything()) |> 
-  dplyr::left_join(long_fit_diffs, by = "model") |> 
-  rbind(inv_group[, 5:7] |> 
-          dplyr::mutate(
-    model = c("configural", "metric"),
-    .before = dplyr::everything()) |> 
-          dplyr::left_join(group_fitdiffs, by = "model"))
-
-fitdiffs_df[1, -1] <- t(as.data.frame(
-  fitmeasures(
-    configural.fit, fit.measures = c(
-      "chisq", "df", "pvalue",
-      "rmsea", "cfi"))
-))
-
-fitdiffs_df[5, -1] <- t(as.data.frame(
-  fitmeasures(
-    configural.fit.group, fit.measures = c(
-      "chisq", "df", "pvalue",
-      "rmsea", "cfi"))
-))
-
-fitdiffs_df |> 
-  dplyr::mutate(
-    `Pr(>Chisq)` = ifelse(`Pr(>Chisq)` < .001, "<.001", 
-                          weights::rd(`Pr(>Chisq)`, 2)),
-    dplyr::across(c(aic, bic), ~round(.x, 0)),
-    dplyr::across(c(rmsea.robust, cfi.robust),
-                  ~weights::rd(.x, 4)),
-    `Chisq diff` = round(`Chisq diff`, 2),
-    model = stringr::str_to_title(model)
-    ) |> 
-  `colnames<-`(c("Model", "$\\Delta\\chi^2$", 
-                 "$\\Delta$df", "$\\it{p}$-value", 
-                 "$\\Delta$RMSEA", "$\\Delta$CFI",
-                 "$\\Delta$AIC", "$\\Delta$BIC")) |> 
-  kbl(booktabs = TRUE, 
-      caption = " Model fit differences for CFA measurement invariance tests.", 
-      escape = FALSE) |> 
-  pack_rows("Longitudinal invariance", 1, 4) |>
-  pack_rows("Group invariance", 5, 6) |> 
-  footnote(general = "Differences to each preceding constraint level.",
-           footnote_as_chunk = TRUE,
-           general_title = "Note. ") |> 
-  kable_paper()
 ```

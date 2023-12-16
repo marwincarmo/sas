@@ -5,13 +5,14 @@ execute:
 
 # Dimensionality Analyses
 
+## Loading the required packages
+
 ```{r packages-nwk, echo=TRUE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(psychTools)
 library(EGAnet)
 library(qgraph)
-library(tidymodels)
-library(ggpubr)
+library(lavaan)
 library(kableExtra)
 ```
 
@@ -49,17 +50,20 @@ items <- arm1[,2:8]
 
 ## Detecting redundancy with Unique Variable Analysis
 
+When modeling psychological data, redundant items can lead to unintended effects, make it difficult to interpret centrality measures in network models, and violate the principle of local independence in latent variable models [@christensen2023]. Unique Variable Analysis [@christensen2023] can identify redundant items using network modeling and a graph theory measure called weighted topological overlap (wTO). UVA identifies locally dependent pairs of variables and uses the false discovery rate (FDR) to assess the expected count of false positives.
+
 ```{r redund-items}
 redund <- EGAnet::UVA(data=items[,2:7], method="wTO", type="threshold",  corr =  "spearman",
                     reduce=FALSE, adhoc=FALSE, plot.redundancy=TRUE, reduce.method = "remove") 
 redund.items <- redund$redundancy$redundant
 ```
 
-High redundancies were found between items `r names(redund.items[1])` ("`r items_labels[items_labels$items==names(redund.items[1]),2]`") and `r redund.items[[1]]` ("`r items_labels[items_labels$items==redund.items[[1]],2]`").
+High redundancies were found between items `r names(redund.items[1])` ("`r items_labels[items_labels$items==names(redund.items[1]),2]`"), `r redund.items[[1]][1]` ("`r items_labels[items_labels$items==redund.items[[1]][1],2]`"), and `r redund.items[[1]][2]` ("`r items_labels[items_labels$items==redund.items[[1]][2],2]`").
 
-# Initial Dimensionality Estimation
+## Dimensionality Estimation
 
-## Model with redundancies
+To estimate the number of dimensions, we used Exploratory Graph Analysis [@golino2017, @golino2020], a recently developed method of dimensionality assessment from network psychometrics. This method employs undirected network models to determine the number of dimensions in multivariate data. Firstly, the EGA algorithm estimates the network using either the Graphical Least Absolute Shrinkage and Selection Operator (GLASSO) or the Triangulated Maximally Filtered Graph (TMFG). Then, it applies a community detection algorithm to identify the number and content of communities in the network. These communities are statistically equivalent to factors of latent variable models [@golino2017]. As recommended by [@golino2020], we used both GLASSO and TMFG methods to estimate the psychometric networks.
+
 
 ```{r ega-with-redundancy}
 # EGA (with redundancy) 
@@ -77,11 +81,11 @@ comp.plots.wr <- EGAnet::compare.EGA.plots(
   rows = 1, columns = 2
 )
 
-comp.plots.wr$comparison.plot
-
 ```
 
 ### Structural consistency
+
+As a way to assess internal consistency from the network perspective, BootEGA generates a sampling distribution of EGA results from replicate data. It informs how often dimensions are exactly recovered (structural consistency) and how often each item is allocated in its respective empirical dimension (item stability).
 
 ```{r bootEGA-wr}
 
@@ -95,7 +99,7 @@ boot.glasso.wr <- bootEGA(items[,2:7], iter = 1000, model = "glasso", type = "pa
 # Descriptive statistics 
 desc.stab.wr <- rbind(boot.tmfg.wr$summary.table, boot.glasso.wr$summary.table)
 row.names(desc.stab.wr) <- c("TMFG", "GLASSO")
-desc.stab.wr
+kbl(desc.stab.wr)
 ```
 
 ```{r dimension-frequency}
@@ -104,7 +108,7 @@ desc.stab.wr
 dim.freq.wr <- rbind(boot.tmfg.wr$frequency, boot.glasso.wr$frequency)
 row.names(dim.freq.wr) <- c(rep("TMFG", nrow(boot.tmfg.wr$frequency)), 
                             rep("GLASSO", nrow(boot.glasso.wr$frequency)))
-dim.freq.wr
+dim.freq.wr |> kbl()
 ```
 
 ```{r structural-consistency-wr}
@@ -117,16 +121,12 @@ dim.stab.wr.glasso <- dimensionStability(boot.glasso.wr)
 
 ```{r network-loadings-wr}
 # Compute standardized node strength 
-net.loads(ega.wr.glasso)$std
+kbl(net.loads(ega.wr.glasso)$std,
+    col.names = c("Item", "Network loading"))
 ```
 
-# EGA x CFA
+### Confirmatory Factor Analysis
 
-```{r }
-
-cfa.ega <- CFA(ega.obj = ega.wr.glasso, data = arm1, estimator="WLSMV", plot.CFA = TRUE)
-
-```
 
 ```{r}
 model_sas <- "
@@ -134,19 +134,26 @@ model_sas <- "
 SAS =~ sas_1 + sas_2 + sas_3 + sas_4 + sas_5 + sas_6
 
 "
-#sas_1 ~~ sas_2
 fit_sas <- lavaan::cfa(model = model_sas,
                         std.lv = TRUE, ordered=TRUE, data = items)
 
 semTools::fitmeasures(fit_sas, 
                          fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi",
-                                          "rmsea.robust", "rmsea.ci.lower.robust", "rmsea.ci.upper.robust", "tli.robust", "cfi.robust", "srmr_bentler"))
+                                          "rmsea.robust", "rmsea.ci.lower.robust", "rmsea.ci.upper.robust", "tli.robust", "cfi.robust", "srmr_bentler")) |> 
+  kbl(col.names = c("Index", "Value"))
 ```
 
 ```{r mod-indices}
 lavaan::modindices(fit_sas) |> 
   dplyr::arrange(-mi) |> 
   head(10) |> 
-  kbl() |> 
-  kable_paper()
+  kbl()
 ```
+
+#### Factor loadings
+
+```{r}
+inspect(fit_sas,what="std")$lambda |> 
+  kbl(col.names = c("Item", "Std. Loading"))
+```
+

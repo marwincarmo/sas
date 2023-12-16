@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -203,16 +222,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#detecting-redundancy-with-unique-variable-analysis" id="toc-detecting-redundancy-with-unique-variable-analysis" class="nav-link active" data-scroll-target="#detecting-redundancy-with-unique-variable-analysis"><span class="header-section-number">4.1</span> Detecting redundancy with Unique Variable Analysis</a></li>
-  <li><a href="#initial-dimensionality-estimation" id="toc-initial-dimensionality-estimation" class="nav-link" data-scroll-target="#initial-dimensionality-estimation"><span class="header-section-number">5</span> Initial Dimensionality Estimation</a>
+  <li><a href="#loading-the-required-packages" id="toc-loading-the-required-packages" class="nav-link active" data-scroll-target="#loading-the-required-packages"><span class="header-section-number">4.1</span> Loading the required packages</a></li>
+  <li><a href="#detecting-redundancy-with-unique-variable-analysis" id="toc-detecting-redundancy-with-unique-variable-analysis" class="nav-link" data-scroll-target="#detecting-redundancy-with-unique-variable-analysis"><span class="header-section-number">4.2</span> Detecting redundancy with Unique Variable Analysis</a></li>
+  <li><a href="#dimensionality-estimation" id="toc-dimensionality-estimation" class="nav-link" data-scroll-target="#dimensionality-estimation"><span class="header-section-number">4.3</span> Dimensionality Estimation</a>
   <ul class="collapse">
-  <li><a href="#model-with-redundancies" id="toc-model-with-redundancies" class="nav-link" data-scroll-target="#model-with-redundancies"><span class="header-section-number">5.1</span> Model with redundancies</a>
-  <ul class="collapse">
-  <li><a href="#structural-consistency" id="toc-structural-consistency" class="nav-link" data-scroll-target="#structural-consistency"><span class="header-section-number">5.1.1</span> Structural consistency</a></li>
-  <li><a href="#standardized-node-strenght" id="toc-standardized-node-strenght" class="nav-link" data-scroll-target="#standardized-node-strenght"><span class="header-section-number">5.1.2</span> Standardized node strenght</a></li>
+  <li><a href="#structural-consistency" id="toc-structural-consistency" class="nav-link" data-scroll-target="#structural-consistency"><span class="header-section-number">4.3.1</span> Structural consistency</a></li>
+  <li><a href="#standardized-node-strenght" id="toc-standardized-node-strenght" class="nav-link" data-scroll-target="#standardized-node-strenght"><span class="header-section-number">4.3.2</span> Standardized node strenght</a></li>
+  <li><a href="#confirmatory-factor-analysis" id="toc-confirmatory-factor-analysis" class="nav-link" data-scroll-target="#confirmatory-factor-analysis"><span class="header-section-number">4.3.3</span> Confirmatory Factor Analysis</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#ega-x-cfa" id="toc-ega-x-cfa" class="nav-link" data-scroll-target="#ega-x-cfa"><span class="header-section-number">6</span> EGA x CFA</a></li>
   </ul>
 </nav>
     </div>
@@ -236,31 +253,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="loading-the-required-packages" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="loading-the-required-packages"><span class="header-section-number">4.1</span> Loading the required packages</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psychTools)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EGAnet)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qgraph)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> arm1[,<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="detecting-redundancy-with-unique-variable-analysis" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="detecting-redundancy-with-unique-variable-analysis"><span class="header-section-number">4.1</span> Detecting redundancy with Unique Variable Analysis</h2>
+</section>
+<section id="detecting-redundancy-with-unique-variable-analysis" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="detecting-redundancy-with-unique-variable-analysis"><span class="header-section-number">4.2</span> Detecting redundancy with Unique Variable Analysis</h2>
+<p>When modeling psychological data, redundant items can lead to unintended effects, make it difficult to interpret centrality measures in network models, and violate the principle of local independence in latent variable models <span class="citation" data-cites="christensen2023">(<a href="references.html#ref-christensen2023" role="doc-biblioref">Christensen et al., 2023</a>)</span>. Unique Variable Analysis <span class="citation" data-cites="christensen2023">(<a href="references.html#ref-christensen2023" role="doc-biblioref">Christensen et al., 2023</a>)</span> can identify redundant items using network modeling and a graph theory measure called weighted topological overlap (wTO). UVA identifies locally dependent pairs of variables and uses the false discovery rate (FDR) to assess the expected count of false positives.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>redund <span class="ot">&lt;-</span> EGAnet<span class="sc">::</span><span class="fu">UVA</span>(<span class="at">data=</span>items[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">method=</span><span class="st">"wTO"</span>, <span class="at">type=</span><span class="st">"threshold"</span>,  <span class="at">corr =</span>  <span class="st">"spearman"</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">reduce=</span><span class="cn">FALSE</span>, <span class="at">adhoc=</span><span class="cn">FALSE</span>, <span class="at">plot.redundancy=</span><span class="cn">TRUE</span>, <span class="at">reduce.method =</span> <span class="st">"remove"</span>) </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>redund.items <span class="ot">&lt;-</span> redund<span class="sc">$</span>redundancy<span class="sc">$</span>redundant</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>High redundancies were found between items sas_3 (“The thought of going to sleep makes me uneasy.”) and sas_4, sas_6 (“I am scared of not being able to fall asleep.”).</p>
+<p>High redundancies were found between items sas_3 (“The thought of going to sleep makes me uneasy.”), sas_4 (“I have negative feelings towards my sleep.”), and sas_6 (“I am scared of not being able to fall asleep.”).</p>
 </section>
-<section id="initial-dimensionality-estimation" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Initial Dimensionality Estimation</h1>
-<section id="model-with-redundancies" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="model-with-redundancies"><span class="header-section-number">5.1</span> Model with redundancies</h2>
+<section id="dimensionality-estimation" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="dimensionality-estimation"><span class="header-section-number">4.3</span> Dimensionality Estimation</h2>
+<p>To estimate the number of dimensions, we used Exploratory Graph Analysis <span class="citation" data-cites="golino2017">H. Golino et al. (<a href="references.html#ref-golino2020" role="doc-biblioref">2020</a>)</span>, a recently developed method of dimensionality assessment from network psychometrics. This method employs undirected network models to determine the number of dimensions in multivariate data. Firstly, the EGA algorithm estimates the network using either the Graphical Least Absolute Shrinkage and Selection Operator (GLASSO) or the Triangulated Maximally Filtered Graph (TMFG). Then, it applies a community detection algorithm to identify the number and content of communities in the network. These communities are statistically equivalent to factors of latent variable models <span class="citation" data-cites="golino2017">(<a href="references.html#ref-golino2017" role="doc-biblioref">H. F. Golino &amp; Epskamp, 2017</a>)</span>. As recommended by <span class="citation" data-cites="golino2020">(<a href="references.html#ref-golino2020" role="doc-biblioref">H. Golino et al., 2020</a>)</span>, we used both GLASSO and TMFG methods to estimate the psychometric networks.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EGA (with redundancy) </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ega.wr.tmfg <span class="ot">&lt;-</span> <span class="fu">EGA</span>(items[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">algorithm =</span> <span class="st">"walktrap"</span>, <span class="at">model =</span> <span class="st">"TMFG"</span>,  <span class="at">corr =</span>  <span class="st">"spearman"</span>,</span>
@@ -279,118 +298,232 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <p><img src="03_dimensionality-analysis_files/figure-html/ega-with-redundancy-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>comp.plots.wr<span class="sc">$</span>comparison.plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
 </div>
-</div>
-<section id="structural-consistency" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="structural-consistency"><span class="header-section-number">5.1.1</span> Structural consistency</h3>
+<section id="structural-consistency" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="structural-consistency"><span class="header-section-number">4.3.1</span> Structural consistency</h3>
+<p>As a way to assess internal consistency from the network perspective, BootEGA generates a sampling distribution of EGA results from replicate data. It informs how often dimensions are exactly recovered (structural consistency) and how often each item is allocated in its respective empirical dimension (item stability).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>boot.tmfg.wr <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(items[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">model =</span> <span class="st">"TMFG"</span>, <span class="at">type =</span> <span class="st">"parametric"</span>, <span class="at">corr =</span>  <span class="st">"spearman"</span>, <span class="at">algorithm =</span> <span class="st">"walktrap"</span>, <span class="at">plot.typicalStructure =</span> <span class="cn">FALSE</span>)</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>boot.tmfg.wr <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(items[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">model =</span> <span class="st">"TMFG"</span>, <span class="at">type =</span> <span class="st">"parametric"</span>, <span class="at">corr =</span>  <span class="st">"spearman"</span>, <span class="at">algorithm =</span> <span class="st">"walktrap"</span>, <span class="at">plot.typicalStructure =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>boot.glasso.wr <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(items[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">model =</span> <span class="st">"glasso"</span>, <span class="at">type =</span> <span class="st">"parametric"</span>, <span class="at">corr =</span>  <span class="st">"spearman"</span>, <span class="at">plot.typicalStructure =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descriptive statistics </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>desc.stab.wr <span class="ot">&lt;-</span> <span class="fu">rbind</span>(boot.tmfg.wr<span class="sc">$</span>summary.table, boot.glasso.wr<span class="sc">$</span>summary.table)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(desc.stab.wr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"TMFG"</span>, <span class="st">"GLASSO"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(desc.stab.wr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n.Boots</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median.dim</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SE.dim</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CI.dim</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lower.CI</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Upper.CI</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lower.Quantile</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Upper.Quantile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TMFG</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GLASSO</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency of dimensions </span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>boot.glasso.wr <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(items[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">model =</span> <span class="st">"glasso"</span>, <span class="at">type =</span> <span class="st">"parametric"</span>, <span class="at">corr =</span>  <span class="st">"spearman"</span>, <span class="at">plot.typicalStructure =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>dim.freq.wr <span class="ot">&lt;-</span> <span class="fu">rbind</span>(boot.tmfg.wr<span class="sc">$</span>frequency, boot.glasso.wr<span class="sc">$</span>frequency)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(dim.freq.wr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"TMFG"</span>, <span class="fu">nrow</span>(boot.tmfg.wr<span class="sc">$</span>frequency)), </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">rep</span>(<span class="st">"GLASSO"</span>, <span class="fu">nrow</span>(boot.glasso.wr<span class="sc">$</span>frequency)))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>dim.freq.wr <span class="sc">|&gt;</span> <span class="fu">kbl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th"># of Factors</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TMFG</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GLASSO</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descriptive statistics </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>desc.stab.wr <span class="ot">&lt;-</span> <span class="fu">rbind</span>(boot.tmfg.wr<span class="sc">$</span>summary.table, boot.glasso.wr<span class="sc">$</span>summary.table)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(desc.stab.wr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"TMFG"</span>, <span class="st">"GLASSO"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>desc.stab.wr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       n.Boots median.dim SE.dim CI.dim Lower.CI Upper.CI Lower.Quantile
-TMFG      1000          1      0      0        1        1              1
-GLASSO    1000          1      0      0        1        1              1
-       Upper.Quantile
-TMFG                1
-GLASSO              1</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency of dimensions </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dim.freq.wr <span class="ot">&lt;-</span> <span class="fu">rbind</span>(boot.tmfg.wr<span class="sc">$</span>frequency, boot.glasso.wr<span class="sc">$</span>frequency)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(dim.freq.wr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"TMFG"</span>, <span class="fu">nrow</span>(boot.tmfg.wr<span class="sc">$</span>frequency)), </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">rep</span>(<span class="st">"GLASSO"</span>, <span class="fu">nrow</span>(boot.glasso.wr<span class="sc">$</span>frequency)))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dim.freq.wr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       # of Factors Frequency
-TMFG              1         1
-GLASSO            1         1</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># structural consistency</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dim.stab.wr.tmfg <span class="ot">&lt;-</span> <span class="fu">dimensionStability</span>(boot.tmfg.wr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># structural consistency</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dim.stab.wr.tmfg <span class="ot">&lt;-</span> <span class="fu">dimensionStability</span>(boot.tmfg.wr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03_dimensionality-analysis_files/figure-html/structural-consistency-wr-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dim.stab.wr.glasso <span class="ot">&lt;-</span> <span class="fu">dimensionStability</span>(boot.glasso.wr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dim.stab.wr.glasso <span class="ot">&lt;-</span> <span class="fu">dimensionStability</span>(boot.glasso.wr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03_dimensionality-analysis_files/figure-html/structural-consistency-wr-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="standardized-node-strenght" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="standardized-node-strenght"><span class="header-section-number">5.1.2</span> Standardized node strenght</h3>
+<section id="standardized-node-strenght" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="standardized-node-strenght"><span class="header-section-number">4.3.2</span> Standardized node strenght</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute standardized node strength </span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">net.loads</span>(ega.wr.glasso)<span class="sc">$</span>std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              1
-sas_4 0.4713846
-sas_3 0.4577097
-sas_6 0.4187228
-sas_5 0.4166646
-sas_2 0.2331131
-sas_1 0.1605713</code></pre>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="ega-x-cfa" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> EGA x CFA</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cfa.ega <span class="ot">&lt;-</span> <span class="fu">CFA</span>(<span class="at">ega.obj =</span> ega.wr.glasso, <span class="at">data =</span> arm1, <span class="at">estimator=</span><span class="st">"WLSMV"</span>, <span class="at">plot.CFA =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "sas_1" "sas_2" "sas_3" "sas_4" "sas_5" "sas_6"</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute standardized node strength </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(<span class="fu">net.loads</span>(ega.wr.glasso)<span class="sc">$</span>std,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Item"</span>, <span class="st">"Network loading"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03_dimensionality-analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Item</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Network loading</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sas_4</td>
+<td style="text-align: right;">0.4713846</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sas_3</td>
+<td style="text-align: right;">0.4577097</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sas_6</td>
+<td style="text-align: right;">0.4187228</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sas_5</td>
+<td style="text-align: right;">0.4166646</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sas_2</td>
+<td style="text-align: right;">0.2331131</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sas_1</td>
+<td style="text-align: right;">0.1605713</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
 </div>
+</section>
+<section id="confirmatory-factor-analysis" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="confirmatory-factor-analysis"><span class="header-section-number">4.3.3</span> Confirmatory Factor Analysis</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model_sas <span class="ot">&lt;-</span> <span class="st">"</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">SAS =~ sas_1 + sas_2 + sas_3 + sas_4 + sas_5 + sas_6</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#sas_1 ~~ sas_2</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>fit_sas <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> model_sas,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">std.lv =</span> <span class="cn">TRUE</span>, <span class="at">ordered=</span><span class="cn">TRUE</span>, <span class="at">data =</span> items)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>semTools<span class="sc">::</span><span class="fu">fitmeasures</span>(fit_sas, </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">"rmsea"</span>, <span class="st">"rmsea.ci.lower"</span>, <span class="st">"rmsea.ci.upper"</span>, <span class="st">"cfi"</span>,</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"rmsea.robust"</span>, <span class="st">"rmsea.ci.lower.robust"</span>, <span class="st">"rmsea.ci.upper.robust"</span>, <span class="st">"tli.robust"</span>, <span class="st">"cfi.robust"</span>, <span class="st">"srmr_bentler"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                rmsea        rmsea.ci.lower        rmsea.ci.upper 
-                0.086                 0.071                 0.102 
-                  cfi          rmsea.robust rmsea.ci.lower.robust 
-                0.998                 0.142                 0.126 
-rmsea.ci.upper.robust            tli.robust            cfi.robust 
-                0.160                 0.936                 0.961 
-         srmr_bentler 
-                0.026 </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">modindices</span>(fit_sas) <span class="sc">|&gt;</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="sc">-</span>mi) <span class="sc">|&gt;</span> </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model_sas <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">SAS =~ sas_1 + sas_2 + sas_3 + sas_4 + sas_5 + sas_6</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fit_sas <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> model_sas,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">std.lv =</span> <span class="cn">TRUE</span>, <span class="at">ordered=</span><span class="cn">TRUE</span>, <span class="at">data =</span> items)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>semTools<span class="sc">::</span><span class="fu">fitmeasures</span>(fit_sas, </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">"rmsea"</span>, <span class="st">"rmsea.ci.lower"</span>, <span class="st">"rmsea.ci.upper"</span>, <span class="st">"cfi"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"rmsea.robust"</span>, <span class="st">"rmsea.ci.lower.robust"</span>, <span class="st">"rmsea.ci.upper.robust"</span>, <span class="st">"tli.robust"</span>, <span class="st">"cfi.robust"</span>, <span class="st">"srmr_bentler"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Index"</span>, <span class="st">"Value"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="lightable-paper table table-sm table-striped small" data-quarto-postprocess="true">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Index</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">rmsea</td>
+<td style="text-align: right;">0.08600869</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rmsea.ci.lower</td>
+<td style="text-align: right;">0.07115102</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rmsea.ci.upper</td>
+<td style="text-align: right;">0.10173106</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cfi</td>
+<td style="text-align: right;">0.99841486</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rmsea.robust</td>
+<td style="text-align: right;">0.14231055</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rmsea.ci.lower.robust</td>
+<td style="text-align: right;">0.12550274</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rmsea.ci.upper.robust</td>
+<td style="text-align: right;">0.15983269</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tli.robust</td>
+<td style="text-align: right;">0.93552930</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cfi.robust</td>
+<td style="text-align: right;">0.96131758</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">srmr_bentler</td>
+<td style="text-align: right;">0.02621635</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">modindices</span>(fit_sas) <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="sc">-</span>mi) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">lhs</th>
@@ -510,8 +643,65 @@ rmsea.ci.upper.robust            tli.robust            cfi.robust
 
 </div>
 </div>
+<section id="factor-loadings" class="level4" data-number="4.3.3.1">
+<h4 data-number="4.3.3.1" class="anchored" data-anchor-id="factor-loadings"><span class="header-section-number">4.3.3.1</span> Factor loadings</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(fit_sas,<span class="at">what=</span><span class="st">"std"</span>)<span class="sc">$</span>lambda <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Item"</span>, <span class="st">"Std. Loading"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Item</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Std. Loading</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sas_1</td>
+<td style="text-align: right;">0.4632094</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sas_2</td>
+<td style="text-align: right;">0.5820430</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sas_3</td>
+<td style="text-align: right;">0.9372241</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sas_4</td>
+<td style="text-align: right;">0.9463663</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sas_5</td>
+<td style="text-align: right;">0.8439593</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sas_6</td>
+<td style="text-align: right;">0.8874601</td>
+</tr>
+</tbody>
+</table>
 
 
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-christensen2023" class="csl-entry" role="listitem">
+Christensen, A. P., Garrido, L. E., &amp; Golino, H. (2023). Unique <span>Variable Analysis</span>: <span>A Network Psychometrics Method</span> to <span>Detect Local Dependence</span>. <em>Multivariate Behavioral Research</em>, <em>0</em>(0), 1–18. <a href="https://doi.org/10.1080/00273171.2023.2194606">https://doi.org/10.1080/00273171.2023.2194606</a>
+</div>
+<div id="ref-golino2017" class="csl-entry" role="listitem">
+Golino, H. F., &amp; Epskamp, S. (2017). Exploratory graph analysis: <span>A</span> new approach for estimating the number of dimensions in psychological research. <em>PLOS ONE</em>, <em>12</em>(6), e0174035. <a href="https://doi.org/gbjzzb">https://doi.org/gbjzzb</a>
+</div>
+<div id="ref-golino2020" class="csl-entry" role="listitem">
+Golino, H., Shi, D., Christensen, A. P., Garrido, L. E., Nieto, M. D., Sadana, R., Thiyagarajan, J. A., &amp; Martinez-Molina, A. (2020). Investigating the performance of exploratory graph analysis and traditional techniques to identify the number of latent factors: A simulation and tutorial. <em>Psychological Methods</em>, <em>25</em>(3), 292. <a href="https://doi.org/10.1037/met0000255">https://doi.org/10.1037/met0000255</a>
+</div>
+</div>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
