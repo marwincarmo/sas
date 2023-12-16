@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Marwin Carmo">
+<meta name="author" content="Marwin Carmo, University of California, Davis">
 <meta name="dcterms.date" content="2023-12-14">
 
 <title>Validation of the Sleep Acceptance Scale</title>
@@ -91,6 +91,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Validation of the Sleep Acceptance Scale</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/hadley/r4ds/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -139,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05_reliability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">05_reliability.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reliability and Validity</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -189,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Marwin Carmo </p>
+             <p>Marwin Carmo, University of California, Davis </p>
           </div>
   </div>
     
@@ -208,22 +211,28 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>The goal of this course is to build a set of tools for cleaning and managing your data. As discussed in class, a big part of that is to create a workflow for your research that is efficient, clear, and minimizes errors. The final project in the course aims to provide an opportunity for you to flesh out what that means for you and research. There’s no right or wrong way to build a sustainable workflow for yourself.</p>
+<p>This book was developed as the final project of <a href="https://psychology.ucdavis.edu/people/edbeck">Dr.&nbsp;Emorie Beck</a>’s course <a href="https://emoriebeck.github.io/psc290-data-FQ23/">Data Cleaning and Management</a>, taught at University of California, Davis in the Fall quarter of 2023.</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>What is the project you are working on? Basically, this section should give me enough information to understand the research project (if applicable) or 1-2 paragraphs is sufficient in most cases.</p>
+<p>This project aims to create a comprehensive pipeline for validating the Sleep Acceptance Scale (SAS), an instrument designed to evaluate people’s acceptance of sleep problems. The data for this project come from adults between 18 and 59 living in Brazil who were surveyed online using REDCap.</p>
+<p>The goal was not to discuss the results of the analyses as it is expected to be developed in a future publication in a scientific journal. What will be show in this project are the analyses’ code and outputs that usually do not fit into a traditional scientific publication.</p>
+<p>Further, it is aimed to be a “living” document</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>There are two main goals that I wish to achieve with this project. First, it is</p>
+<p>This project is motivated by a collective effort to promote transparency in the field of psychology. Although we did not pre register the development of the SAS, we are sharing the analysis code and data to allow the scientific community to scrutinize the final stages of the process. Furthermore, the “.html” file that contains the protocol used in the analysis should make it easier for readers without R programming knowledge to understand.</p>
 <p>Clearly state why you are creating the product. What problems does it address? How will you integrate it into your workflow? How will it change your workflow, etc. There is no minimum of maximum length, but my guess is 1-2 paragraphs.</p>
 </section>
 <section id="approach" class="level2">
 <h2 class="anchored" data-anchor-id="approach">Approach</h2>
 <p>Short description of how you went about creating your product. Describe what tools you used, how you went about creating the product (e.g., built a shell and then built the rest out from there). There is no minimum of maximum length, but my guess is no less than 2-3 paragraphs.</p>
+<p>The end product will consist of a <code>.qmd</code> file and a rendered <code>.html</code> file. These files will present every process step, from data cleaning to the final analysis. All analysis scripts, raw and transformed data, and external files will be organized in folders within the project directory. Our ultimate goal is to upload this project to an open platform such as <a href="https://osf.io/">osf.io</a> so other researchers can easily access and reproduce it.</p>
 </section>
 <section id="reflection" class="level2">
 <h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
 <p>Reflect on what you learned in this project / class. What course concepts did you draw on? What barriers did you have to overcome to complete the project? If you were to start over, would you do it the same way again or take a different strategy? These are just some examples of questions to consider in reflecting on your project. There is no minimum of maximum length, but my guess is 2-3 paragraphs.</p>
+<p>This project involves multiple analyses that use different packages and create various objects in the work environment. The main challenge is creating a report file that can be seamlessly executed and easily understandable by machines and humans.</p>
 
 
 </section>

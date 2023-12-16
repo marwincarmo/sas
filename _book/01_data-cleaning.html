@@ -124,6 +124,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Validation of the Sleep Acceptance Scale</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/hadley/r4ds/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -201,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#importing-the-raw-data" id="toc-importing-the-raw-data" class="nav-link" data-scroll-target="#importing-the-raw-data"><span class="header-section-number">2.2</span> Importing the raw data</a></li>
   <li><a href="#data-transformation-and-selection" id="toc-data-transformation-and-selection" class="nav-link" data-scroll-target="#data-transformation-and-selection"><span class="header-section-number">2.3</span> Data transformation and selection</a></li>
   <li><a href="#translation-of-column-names" id="toc-translation-of-column-names" class="nav-link" data-scroll-target="#translation-of-column-names"><span class="header-section-number">2.4</span> Translation of column names</a></li>
-  <li><a href="#saving-the-dataset" id="toc-saving-the-dataset" class="nav-link" data-scroll-target="#saving-the-dataset"><span class="header-section-number">2.5</span> Saving the dataset</a></li>
+  <li><a href="#saving-the-clean-dataset" id="toc-saving-the-clean-dataset" class="nav-link" data-scroll-target="#saving-the-clean-dataset"><span class="header-section-number">2.5</span> Saving the clean dataset</a></li>
   </ul>
 </nav>
     </div>
@@ -234,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importing-the-raw-data" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="importing-the-raw-data"><span class="header-section-number">2.2</span> Importing the raw data</h2>
-<p>First we will import the raw data set downloaded from the REDCap repository where this project is stored. To be able to share this data, we removed sensitive information from participants such as name, telephone number, email address, and CPF (government id number).</p>
+<p>First we will import the raw data set downloaded from the REDCap repository where this project is stored. To be able to share this data, we removed sensitive information from participants such as name, telephone number, email address, and CPF (the Brazilian SSN).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/raw_data/TerapiaDeAceitaoECom_DATA_2023-08-16_1318.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(raw_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -260,8 +263,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-transformation-and-selection" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="data-transformation-and-selection"><span class="header-section-number">2.3</span> Data transformation and selection</h2>
-<p>This dataset contains 588 variables and a few of them are relevant to the analyses in this project. Therefore, first we will transform some of the variables of interest and then select those that we need. We want to have a clean dataset containing the columns of age, event, sex, race, marital status, education, work situation, location, sleep habits, insomnia severity index, anxiety, depression, dysfunctional beliefs and attitudes about sleep, sleep problem acceptance and sleep acceptance.</p>
-<p>Explicar os passos…</p>
+<p>This dataset contains 588 variables and a few of them are relevant to the analyses in this project. Therefore, we will transform some of the variables of interest and then select those that we need. We want to have a clean dataset containing the columns of age, event, sex, race, marital status, education, work situation, location, sleep habits, insomnia severity index, anxiety, depression, dysfunctional beliefs and attitudes about sleep, sleep problem acceptance and sleep acceptance.</p>
+<ol type="1">
+<li>Using the <code>dplyr</code> function <code>with_groups</code> we group the data by the participants’ <code>record_id</code> and then apply the <code>tidyr</code> function <code>fill</code></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">with_groups</span>(record_id,</span>
@@ -284,14 +289,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="translation-of-column-names" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="translation-of-column-names"><span class="header-section-number">2.4</span> Translation of column names</h2>
+<p>This project was developed in Portuguese and the variables were named in the same language. To make them accessible to non-Portuguese-speaking researchers, we should rename the columns translating them to English.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>namesEN <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"record_id"</span>, <span class="st">"redcap_event_name"</span>, <span class="st">"sex"</span>, <span class="st">"age"</span>, <span class="st">"race"</span>, <span class="st">"marital_status"</span>, <span class="st">"education"</span>, <span class="st">"work_status"</span>, <span class="fu">paste0</span>(<span class="st">"dsm_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"isi_1a"</span>, <span class="st">"isi_1b"</span>, <span class="st">"isi_1c"</span>, <span class="fu">paste0</span>(<span class="st">"isi_"</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"isi_total"</span>, <span class="fu">paste0</span>(<span class="st">"hads_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>), <span class="st">"hads_depression"</span>, <span class="st">"hads_anxiety"</span>, <span class="fu">paste0</span>(<span class="st">"aaq_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>), <span class="fu">paste0</span>(<span class="st">"dbas16_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>), <span class="st">"dbas10_04"</span>, <span class="st">"dbas10_10"</span>, <span class="fu">paste0</span>(<span class="st">"spaq_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>), <span class="fu">paste0</span>(<span class="st">"sas_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(clean_data) <span class="ot">&lt;-</span> namesEN</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="saving-the-dataset" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="saving-the-dataset"><span class="header-section-number">2.5</span> Saving the dataset</h2>
+<section id="saving-the-clean-dataset" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="saving-the-clean-dataset"><span class="header-section-number">2.5</span> Saving the clean dataset</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(clean_data, <span class="st">"data/clean_data/clean_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
