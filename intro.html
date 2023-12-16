@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Validation of the Sleep Acceptance Scale - 1&nbsp; Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01_data-cleaning.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Validation of the Sleep Acceptance Scale</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/hadley/r4ds/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_data-cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data cleaning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_data-screening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data screening</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_dimensionality-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dimensionality Analyses</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_invariance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Invariance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_reliability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reliability and Validity</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods"><span class="header-section-number">1.1</span> Methods</a>
+  <ul class="collapse">
+  <li><a href="#participants" id="toc-participants" class="nav-link" data-scroll-target="#participants"><span class="header-section-number">1.1.1</span> Participants</a></li>
+  <li><a href="#measures" id="toc-measures" class="nav-link" data-scroll-target="#measures"><span class="header-section-number">1.1.2</span> Measures</a></li>
+  <li><a href="#statistical-analyses" id="toc-statistical-analyses" class="nav-link" data-scroll-target="#statistical-analyses"><span class="header-section-number">1.1.3</span> Statistical Analyses</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Insomnia is a disorder related to dissatisfaction with the duration or quality of sleep. It can be a source of distress and impairment by decreasing productivity and lowering energy to engage in social activities <span class="citation" data-cites="americanpsychiatricassociation2013">(<a href="#ref-americanpsychiatricassociation2013" role="doc-biblioref">American Psychiatric Association, 2013</a>)</span>.</p>
+<p>Cognitive and behavioral models of insomnia emphasize the role of sleep-related cognitions as maintainers of insomnia <span class="citation" data-cites="espie2006 harvey2002 lundh2005 morin1993 ong2012 perlis1997">(<a href="#ref-espie2006" role="doc-biblioref">Espie et al., 2006</a>; <a href="#ref-harvey2002" role="doc-biblioref">Harvey, 2002</a>; <a href="#ref-lundh2005" role="doc-biblioref">Lundh, 2005</a>; <a href="#ref-morin1993" role="doc-biblioref">Morin et al., 1993</a>; <a href="#ref-ong2012" role="doc-biblioref">Ong et al., 2012</a>; <a href="#ref-perlis1997" role="doc-biblioref">Perlis et al., 1997</a>)</span>. This disorder is linked to a stringent attachment to sleep needs and expectations, which feeds worry, thought suppression, and rumination <span class="citation" data-cites="lundh2005 ong2012">(<a href="#ref-lundh2005" role="doc-biblioref">Lundh, 2005</a>; <a href="#ref-ong2012" role="doc-biblioref">Ong et al., 2012</a>)</span>. There is compelling evidence that lower levels of psychological flexibility – from which acceptance is a process – are linked to symptoms of depression and anxiety <span class="citation" data-cites="bai2020 bluett2014 ruiz2010 twohig2017">(<a href="#ref-bai2020" role="doc-biblioref">Bai et al., 2020</a>; <a href="#ref-bluett2014" role="doc-biblioref">Bluett et al., 2014</a>; <a href="#ref-ruiz2010" role="doc-biblioref">Ruiz, 2010</a>; <a href="#ref-twohig2017" role="doc-biblioref">Twohig &amp; Levin, 2017</a>)</span>. Additionally, psychological inflexibility correlates with higher levels of sleep difficulty even after controlling for the effect of depressive symptoms <span class="citation" data-cites="kato2016">(<a href="#ref-kato2016" role="doc-biblioref">Kato, 2016</a>)</span>.</p>
+<p>The Sleep Problem Acceptance Questionnaire (SPAQ) <span class="citation" data-cites="bothelius2015">(<a href="#ref-bothelius2015" role="doc-biblioref">Bothelius et al., 2015</a>)</span> is the only measure of acceptance of sleep difficulties developed so far. Because its items were developed with a focus on people with severe sleep problems, this questionnaire has limited application with good sleepers or with those with light to mild sleep problems. Additionally, general tools for measuring acceptance do not address sleep-related behaviors. For such reasons, we developed a new measure of sleep acceptance, titled <strong>Sleep Acceptance Scale (SAS)</strong>.</p>
+<section id="methods" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="methods"><span class="header-section-number">1.1</span> Methods</h2>
+<section id="participants" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="participants"><span class="header-section-number">1.1.1</span> Participants</h3>
+<p>Participants we primarily found through online advertisements, specifically on the social media accounts of the General Hospital of the University of São Paulo, School of Medicine (HC-FMUSP). The data collection period was from May 2021 to July 2022, and we aimed to have both participants with and without insomnia complaints. The first group consisted of individuals already enrolled in an experimental behavioral treatment for insomnia, which this study is a part of. To include participants without insomnia, we requested volunteers who believed they had no sleeping issues. All the participants were natural from Brazil. To be included in the study, participants must be between 18 and 59 years of age and have no reported difficulties reading or writing in Portuguese–SAS was first developed in Portuguese and then translated do English.</p>
+</section>
+<section id="measures" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="measures"><span class="header-section-number">1.1.2</span> Measures</h3>
+<ol type="1">
+<li><p><em>Sleep Acceptance Scale (SAS)</em>: Developed as a 6-item self-report questionnaire rated using a scale ranging from 1 (never) to 7 (always), such that high scores indicate lower sleep acceptance. Its items are:</p></li>
+<li><p><em>Insomnia Severity Index (ISI)</em> <span class="citation" data-cites="bastien2001 morin2011a">(<a href="#ref-bastien2001" role="doc-biblioref">Bastien et al., 2001</a>; <a href="#ref-morin2011a" role="doc-biblioref">Morin et al., 2011</a>)</span>: An 7-item questionnaire to assess insomnia severity and its impact on the patient’s life. Raters use a 5-point scale ranging from 0 (no problem) to 4 (very severe problem).</p></li>
+<li><p><em>The Hospital Anxiety and Depression Scale (HADS)</em> <span class="citation" data-cites="zigmond1983hospital">(<a href="#ref-zigmond1983hospital" role="doc-biblioref">Zigmond &amp; Snaith, 1983</a>)</span>: This scale assesses psychological distress in non-psychiatric patients. It contains a two-factor structure with seven items assessing Anxiety plus seven other items measuring Depression.</p></li>
+<li><p><em>Sleep Problem Acceptance Questionnaire (SPAQ)</em> <span class="citation" data-cites="bothelius2015">(<a href="#ref-bothelius2015" role="doc-biblioref">Bothelius et al., 2015</a>)</span>: An 8-itens instrument that measures the acceptance of sleep difficulties. The SPAQ contains the subscales “Activity Engagement” and “Willingness,” with four items composing each factor; respondents rate them on a 7-point scale, where 0 means “Disagree,” and 6 indicates “Completely agree.”</p></li>
+</ol>
+</section>
+<section id="statistical-analyses" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="statistical-analyses"><span class="header-section-number">1.1.3</span> Statistical Analyses</h3>
+<ol type="1">
+<li><a href="./02_data-screening.html">Data screening and item evaluation</a></li>
+<li><a href="./03_dimensionality-analysis.html">Assessment of the underlying structure</a></li>
+<li><a href="./04_invariance.html">Measurement invariance</a></li>
+<li><a href="./05_reliability.html">Reliability and validity</a></li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="ref-americanpsychiatricassociation2013" class="csl-entry" role="listitem">
+American Psychiatric Association (Ed.). (2013). <em>Diagnostic and statistical manual of mental disorders: <span>DSM</span>-5</em> (5th ed). <span>American Psychiatric Association</span>.
+</div>
+<div id="ref-bai2020" class="csl-entry" role="listitem">
+Bai, Z., Luo, S., Zhang, L., Wu, S., &amp; Chi, I. (2020). Acceptance and <span>Commitment Therapy</span> (<span>ACT</span>) to reduce depression: <span>A</span> systematic review and meta-analysis. <em>Journal of Affective Disorders</em>, <em>260</em>, 728–737. <a href="https://doi.org/10.1016/j.jad.2019.09.040">https://doi.org/10.1016/j.jad.2019.09.040</a>
+</div>
+<div id="ref-bastien2001" class="csl-entry" role="listitem">
+Bastien, C. H., Vallières, A., &amp; Morin, C. M. (2001). Validation of the <span>Insomnia Severity Index</span> as an outcome measure for insomnia research. <em>Sleep Medicine</em>, <em>2</em>(4), 297–307. <a href="https://doi.org/10.1016/s1389-9457(00)00065-4">https://doi.org/10.1016/s1389-9457(00)00065-4</a>
+</div>
+<div id="ref-bluett2014" class="csl-entry" role="listitem">
+Bluett, E. J., Homan, K. J., Morrison, K. L., Levin, M. E., &amp; Twohig, M. P. (2014). Acceptance and commitment therapy for anxiety and <span>OCD</span> spectrum disorders: <span>An</span> empirical review. <em>Journal of Anxiety Disorders</em>, <em>28</em>(6), 612–624. <a href="https://doi.org/10.1016/j.janxdis.2014.06.008">https://doi.org/10.1016/j.janxdis.2014.06.008</a>
+</div>
+<div id="ref-bothelius2015" class="csl-entry" role="listitem">
+Bothelius, K., Jernelöv, S., Fredrikson, M., McCracken, L. M., &amp; Kaldo, V. (2015). Measuring <span>Acceptance</span> of <span>Sleep Difficulties</span>: <span>The Development</span> of the <span>Sleep Problem Acceptance Questionnaire</span>. <em>Sleep</em>, <em>38</em>(11), 1815–1822. <a href="https://doi.org/10.5665/sleep.5170">https://doi.org/10.5665/sleep.5170</a>
+</div>
+<div id="ref-espie2006" class="csl-entry" role="listitem">
+Espie, C. A., Broomfield, N. M., MacMahon, K. M. A., Macphee, L. M., &amp; Taylor, L. M. (2006). The attention-intention-effort pathway in the development of psychophysiologic insomnia: A theoretical review. <em>Sleep Medicine Reviews</em>, <em>10</em>(4), 215–245. <a href="https://doi.org/10.1016/j.smrv.2006.03.002">https://doi.org/10.1016/j.smrv.2006.03.002</a>
+</div>
+<div id="ref-harvey2002" class="csl-entry" role="listitem">
+Harvey, A. G. (2002). A cognitive model of insomnia. <em>Behaviour Research and Therapy</em>, <em>40</em>(8), 869–893. <a href="https://doi.org/fwxq35">https://doi.org/fwxq35</a>
+</div>
+<div id="ref-kato2016" class="csl-entry" role="listitem">
+Kato, T. (2016). Impact of psychological inflexibility on depressive symptoms and sleep difficulty in a <span>Japanese</span> sample. <em>SpringerPlus</em>, <em>5</em>(1), 712. <a href="https://doi.org/gmdm5s">https://doi.org/gmdm5s</a>
+</div>
+<div id="ref-lundh2005" class="csl-entry" role="listitem">
+Lundh, L.-G. (2005). The <span>Role</span> of <span>Acceptance</span> and <span>Mindfulness</span> in the <span>Treatment</span> of <span>Insomnia</span>. <em>Journal of Cognitive Psychotherapy</em>, <em>19</em>(1), 29–39. <a href="https://doi.org/10.1891/jcop.19.1.29.66331">https://doi.org/10.1891/jcop.19.1.29.66331</a>
+</div>
+<div id="ref-morin2011a" class="csl-entry" role="listitem">
+Morin, C. M., Belleville, G., Bélanger, L., &amp; Ivers, H. (2011). <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3079939">The <span>Insomnia Severity Index</span>: <span>Psychometric Indicators</span> to <span>Detect Insomnia Cases</span> and <span>Evaluate Treatment Response</span></a>. <em>Sleep</em>, <em>34</em>(5), 601–608.
+</div>
+<div id="ref-morin1993" class="csl-entry" role="listitem">
+Morin, C. M., Stone, J., Trinkle, D., Mercer, J., &amp; Remsberg, S. (1993). Dysfunctional beliefs and attitudes about sleep among older adults with and without insomnia complaints. <em>Psychology and Aging</em>, <em>8</em>(3), 463–467. <a href="https://doi.org/frwwvp">https://doi.org/frwwvp</a>
+</div>
+<div id="ref-ong2012" class="csl-entry" role="listitem">
+Ong, J. C., Ulmer, C. S., &amp; Manber, R. (2012). Improving sleep with mindfulness and acceptance: <span>A</span> metacognitive model of insomnia. <em>Behaviour Research and Therapy</em>, <em>50</em>(11), 651–660. <a href="https://doi.org/f4fczt">https://doi.org/f4fczt</a>
+</div>
+<div id="ref-perlis1997" class="csl-entry" role="listitem">
+Perlis, M. L., Giles, D. E., Mendelson, W. B., Bootzin, R. R., &amp; Wyatt, J. K. (1997). Psychophysiological insomnia: The behavioural model and a neurocognitive perspective. <em>Journal of Sleep Research</em>, <em>6</em>(3), 179–188. <a href="https://doi.org/fcrnvj">https://doi.org/fcrnvj</a>
+</div>
+<div id="ref-ruiz2010" class="csl-entry" role="listitem">
+Ruiz, F. J. (2010). A review of <span>Acceptance</span> and <span>Commitment Therapy</span> (<span>ACT</span>) empirical evidence: <span>Correlational</span>, experimental psychopathology, component and outcome studies. <em>International Journal of Psychology &amp; Psychological Therapy</em>, <em>10</em>, 125–162.
+</div>
+<div id="ref-twohig2017" class="csl-entry" role="listitem">
+Twohig, M. P., &amp; Levin, M. E. (2017). Acceptance and <span>Commitment Therapy</span> as a <span>Treatment</span> for <span>Anxiety</span> and <span>Depression</span>: <span>A Review</span>. <em>Psychiatric Clinics</em>, <em>40</em>(4), 751–770. <a href="https://doi.org/10.1016/j.psc.2017.08.009">https://doi.org/10.1016/j.psc.2017.08.009</a>
+</div>
+<div id="ref-zigmond1983hospital" class="csl-entry" role="listitem">
+Zigmond, A. S., &amp; Snaith, R. P. (1983). The hospital anxiety and depression scale. <em>Acta Psychiatrica Scandinavica</em>, <em>67</em>(6), 361–370.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01_data-cleaning.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data cleaning</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

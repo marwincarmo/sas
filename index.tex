@@ -1,0 +1,1770 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{siunitx}
+
+  \newcolumntype{d}{S[
+    input-open-uncertainty=,
+    input-close-uncertainty=,
+    parse-numbers = false,
+    table-align-text-pre=false,
+    table-align-text-post=false
+  ]}
+  
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Validation of the Sleep Acceptance Scale},
+  pdfauthor={Marwin Carmo, University of California, Davis},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Validation of the Sleep Acceptance Scale}
+\author{Marwin Carmo, University of California, Davis}
+\date{2023-12-14}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, sharp corners, breakable, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, frame hidden]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+\markboth{Preface}{Preface}
+
+This book was developed as the final project of
+\href{https://psychology.ucdavis.edu/people/edbeck}{Dr.~Emorie Beck}'s
+course \href{https://emoriebeck.github.io/psc290-data-FQ23/}{Data
+Cleaning and Management}, taught at University of California, Davis in
+the Fall quarter of 2023.
+
+\hypertarget{background}{%
+\section*{Background}\label{background}}
+\addcontentsline{toc}{section}{Background}
+
+\markright{Background}
+
+This project aims to create a comprehensive pipeline for validating the
+Sleep Acceptance Scale (SAS), an instrument designed to evaluate
+people's acceptance of sleep problems. The data for this project come
+from adults between 18 and 59 living in Brazil who were surveyed online
+using REDCap.
+
+In this book I do not discuss in depth the results of the analyses as it
+is expected to be developed in a future publication in a scientific
+journal. What will be show in this project are the analyses' code and
+outputs that usually do not fit into a traditional scientific
+publication.
+
+\hypertarget{motivation}{%
+\section*{Motivation}\label{motivation}}
+\addcontentsline{toc}{section}{Motivation}
+
+\markright{Motivation}
+
+There are two main goals that I wish to achieve with this project.
+First, it is to make the data analysis phase of this research project
+transparent and accessible to the reader. Further, it is aimed to be a
+``living'' document, where the readers can make suggestions or critics
+to improve the quality of the work. I also hope that by sharing the code
+and outputs in an online book format, researchers with limited or no
+knowledge of R programming can
+
+Although this document was designed to be accessed independently of the
+formal journal publication, it can also serve as supplementary material
+to the manuscript. To create a fully reproducible manuscript would be
+challenging because the co-authors of this research project do not work
+with R. With this document at least the data analysis can be shared in a
+reproducible format.
+
+\hypertarget{approach}{%
+\section*{Approach}\label{approach}}
+\addcontentsline{toc}{section}{Approach}
+
+\markright{Approach}
+
+Thanks to a suggestion from Dr.~Emorie, this project was redesigned to
+the format of a HTML \href{https://quarto.org/docs/books/}{Quarto book}.
+This format allows to easily combine multiple \texttt{.qmd} documents
+into a single manuscript. Each ``chapter'' in this book correspond to a
+different step of the analysis. In this way, the scripts can be executed
+independently or bundled in a single file.
+
+To create this product first I created a new project in RStudio using
+the Quarto book template. Then different \texttt{.qmd} files were
+created for each step of the analysis and saved in the general folder of
+the project. Additionally, a sub folder for the data was created,
+containing the raw data, the cleaned data from step 1, and intermediate
+outputs saved to optimize the rendering of the document.
+
+The project was also made as a
+\href{https://github.com/marwincarmo/sas}{Github repository}, available
+publicly. Once finished, the book was hosted as a website on Github
+Pages, available at
+
+\hypertarget{reflection}{%
+\section*{Reflection}\label{reflection}}
+\addcontentsline{toc}{section}{Reflection}
+
+\markright{Reflection}
+
+Reflect on what you learned in this project / class. What course
+concepts did you draw on? What barriers did you have to overcome to
+complete the project? If you were to start over, would you do it the
+same way again or take a different strategy? These are just some
+examples of questions to consider in reflecting on your project. There
+is no minimum of maximum length, but my guess is 2-3 paragraphs.
+
+This project involves multiple analyses that use different packages and
+create various objects in the work environment. The main challenge is
+creating a report file that can be seamlessly executed and easily
+understandable by machines and humans.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+Insomnia is a disorder related to dissatisfaction with the duration or
+quality of sleep. It can be a source of distress and impairment by
+decreasing productivity and lowering energy to engage in social
+activities (American Psychiatric Association, 2013).
+
+Cognitive and behavioral models of insomnia emphasize the role of
+sleep-related cognitions as maintainers of insomnia (Espie et al., 2006;
+Harvey, 2002; Lundh, 2005; Morin et al., 1993; Ong et al., 2012; Perlis
+et al., 1997). This disorder is linked to a stringent attachment to
+sleep needs and expectations, which feeds worry, thought suppression,
+and rumination (Lundh, 2005; Ong et al., 2012). There is compelling
+evidence that lower levels of psychological flexibility -- from which
+acceptance is a process -- are linked to symptoms of depression and
+anxiety (Bai et al., 2020; Bluett et al., 2014; Ruiz, 2010; Twohig \&
+Levin, 2017). Additionally, psychological inflexibility correlates with
+higher levels of sleep difficulty even after controlling for the effect
+of depressive symptoms (Kato, 2016).
+
+The Sleep Problem Acceptance Questionnaire (SPAQ) (Bothelius et al.,
+2015) is the only measure of acceptance of sleep difficulties developed
+so far. Because its items were developed with a focus on people with
+severe sleep problems, this questionnaire has limited application with
+good sleepers or with those with light to mild sleep problems.
+Additionally, general tools for measuring acceptance do not address
+sleep-related behaviors. For such reasons, we developed a new measure of
+sleep acceptance, titled \textbf{Sleep Acceptance Scale (SAS)}.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+\hypertarget{participants}{%
+\subsection{Participants}\label{participants}}
+
+Participants we primarily found through online advertisements,
+specifically on the social media accounts of the General Hospital of the
+University of São Paulo, School of Medicine (HC-FMUSP). The data
+collection period was from May 2021 to July 2022, and we aimed to have
+both participants with and without insomnia complaints. The first group
+consisted of individuals already enrolled in an experimental behavioral
+treatment for insomnia, which this study is a part of. To include
+participants without insomnia, we requested volunteers who believed they
+had no sleeping issues. All the participants were natural from Brazil.
+To be included in the study, participants must be between 18 and 59
+years of age and have no reported difficulties reading or writing in
+Portuguese--SAS was first developed in Portuguese and then translated do
+English.
+
+\hypertarget{measures}{%
+\subsection{Measures}\label{measures}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \emph{Sleep Acceptance Scale (SAS)}: Developed as a 6-item self-report
+  questionnaire rated using a scale ranging from 1 (never) to 7
+  (always), such that high scores indicate lower sleep acceptance. Its
+  items are:
+\item
+  \emph{Insomnia Severity Index (ISI)} (Bastien et al., 2001; Morin et
+  al., 2011): An 7-item questionnaire to assess insomnia severity and
+  its impact on the patient's life. Raters use a 5-point scale ranging
+  from 0 (no problem) to 4 (very severe problem).
+\item
+  \emph{The Hospital Anxiety and Depression Scale (HADS)} (Zigmond \&
+  Snaith, 1983): This scale assesses psychological distress in
+  non-psychiatric patients. It contains a two-factor structure with
+  seven items assessing Anxiety plus seven other items measuring
+  Depression.
+\item
+  \emph{Sleep Problem Acceptance Questionnaire (SPAQ)} (Bothelius et
+  al., 2015): An 8-itens instrument that measures the acceptance of
+  sleep difficulties. The SPAQ contains the subscales ``Activity
+  Engagement'' and ``Willingness,'' with four items composing each
+  factor; respondents rate them on a 7-point scale, where 0 means
+  ``Disagree,'' and 6 indicates ``Completely agree.''
+\end{enumerate}
+
+\hypertarget{statistical-analyses}{%
+\subsection{Statistical Analyses}\label{statistical-analyses}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \protect\hyperlink{data-screening}{Data screening and item evaluation}
+\item
+  \protect\hyperlink{dimensionality-analyses}{Assessment of the
+  underlying structure}
+\item
+  \protect\hyperlink{invariance}{Measurement invariance}
+\item
+  \protect\hyperlink{reliability-and-validity}{Reliability and validity}
+\end{enumerate}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{data-cleaning}{%
+\chapter{Data cleaning}\label{data-cleaning}}
+
+\hypertarget{loading-the-required-packages}{%
+\section{Loading the required
+packages}\label{loading-the-required-packages}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{importing-the-raw-data}{%
+\section{Importing the raw data}\label{importing-the-raw-data}}
+
+First we will import the raw data set downloaded from the REDCap
+repository where this project is stored. To be able to share this data,
+we removed sensitive information from participants such as name,
+telephone number, email address, and CPF (the Brazilian SSN).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw\_data }\OtherTok{\textless{}{-}}\NormalTok{ readr}\SpecialCharTok{::}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/raw\_data/TerapiaDeAceitaoECom\_DATA\_2023{-}08{-}16\_1318.csv"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(raw\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 588
+  record_id redcap_event_name   redcap_survey_identifier identificao_timestamp
+      <dbl> <chr>               <lgl>                    <chr>                
+1         1 recrutamento_arm_1  NA                       3/15/2021 21:24      
+2         1 elegibilidade_arm_1 NA                       <NA>                 
+3         1 reteste_arm_1       NA                       <NA>                 
+4         2 recrutamento_arm_1  NA                       3/15/2021 23:45      
+5         2 elegibilidade_arm_1 NA                       <NA>                 
+6         2 reteste_arm_1       NA                       <NA>                 
+# i 584 more variables: data_preenchimento <chr>, data_nascimento <chr>,
+#   idade <dbl>, latitude <dbl>, longitude <dbl>, forma_divulgacao <dbl>,
+#   identificao_complete <dbl>, consentimento_tcle_timestamp <chr>,
+#   consent_sign <chr>, consentimento_tcle_complete <dbl>,
+#   recrutamento_e_seleo_4b68e8_timestamp <chr>, dsm_1 <dbl>, dsm_2 <dbl>,
+#   dsm_3 <dbl>, dsm_4 <dbl>, dsm_5 <dbl>, triagem_disponibilidade_1 <dbl>,
+#   triagem_disponibilidade_2 <dbl>, triagem_disponibilidade_3 <dbl>, ...
+\end{verbatim}
+
+\hypertarget{data-transformation-and-selection}{%
+\section{Data transformation and
+selection}\label{data-transformation-and-selection}}
+
+This dataset contains 588 variables and a few of them are relevant to
+the analyses in this project. Therefore, we will transform some of the
+variables of interest and then select those that we need. We want to
+have a clean dataset containing the columns of age, event, sex, race,
+marital status, education, work situation, location, sleep habits,
+insomnia severity index, anxiety, depression, dysfunctional beliefs and
+attitudes about sleep, sleep problem acceptance and sleep acceptance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clean\_data }\OtherTok{\textless{}{-}}\NormalTok{ raw\_data }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{with\_groups}\NormalTok{(record\_id,}
+\NormalTok{                     tidyr}\SpecialCharTok{::}\NormalTok{fill,}
+                     \FunctionTok{c}\NormalTok{(idade, dsm\_1}\SpecialCharTok{:}\NormalTok{dsm\_5), }\AttributeTok{.direction =} \StringTok{"down"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{identificao\_timestamp =}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{na\_if}\NormalTok{(identificao\_timestamp, }\StringTok{"[not completed]"}\NormalTok{),}
+                \AttributeTok{identificao\_timestamp =}\NormalTok{ lubridate}\SpecialCharTok{::}\FunctionTok{mdy\_hm}\NormalTok{(identificao\_timestamp),}
+                \AttributeTok{data\_nascimento =}\NormalTok{ lubridate}\SpecialCharTok{::}\FunctionTok{mdy}\NormalTok{(data\_nascimento),}
+                \AttributeTok{idade\_new =}\NormalTok{ lubridate}\SpecialCharTok{::}\FunctionTok{time\_length}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(identificao\_timestamp, data\_nascimento, }\AttributeTok{unit=}\StringTok{"weeks"}\NormalTok{), }\StringTok{"years"}\NormalTok{),}
+                \AttributeTok{age =}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{coalesce}\NormalTok{(idade, idade\_new)) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(record\_id, redcap\_event\_name, sexo, age, etnia, estado\_civil, escolaridade, ocupacao,}
+\NormalTok{                dplyr}\SpecialCharTok{::}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"dsm\_"}\NormalTok{), dplyr}\SpecialCharTok{::}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"igi\_"}\NormalTok{), dplyr}\SpecialCharTok{::}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"ehad\_"}\NormalTok{),}
+\NormalTok{                dplyr}\SpecialCharTok{::}\FunctionTok{matches}\NormalTok{(}\StringTok{"aaq\_[0{-}9]"}\NormalTok{), dplyr}\SpecialCharTok{::}\FunctionTok{matches}\NormalTok{(}\StringTok{"dbas\_[0{-}9]+$"}\NormalTok{), dplyr}\SpecialCharTok{::}\FunctionTok{contains}\NormalTok{(}\StringTok{"spaq\_"}\NormalTok{),}
+\NormalTok{                dplyr}\SpecialCharTok{::}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"ebas\_"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(redcap\_event\_name }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"elegibilidade\_arm\_1"}\NormalTok{, }\StringTok{"reteste\_arm\_1"}\NormalTok{),}
+\NormalTok{                age }\SpecialCharTok{\textgreater{}=} \DecValTok{18} \SpecialCharTok{\&}\NormalTok{ age }\SpecialCharTok{\textless{}} \DecValTok{60}\NormalTok{,}
+                \SpecialCharTok{!}\NormalTok{record\_id }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{2562}\NormalTok{, }\DecValTok{1766}\NormalTok{, }\DecValTok{2972}\NormalTok{, }\DecValTok{2681}\NormalTok{, }\DecValTok{430}\NormalTok{, }\DecValTok{2559}\NormalTok{, }\DecValTok{3053}\NormalTok{, }\DecValTok{540}\NormalTok{ , }\DecValTok{522}\NormalTok{ , }\DecValTok{3698}\NormalTok{)}
+\NormalTok{                )}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{translation-of-column-names}{%
+\section{Translation of column
+names}\label{translation-of-column-names}}
+
+This project was developed in Portuguese and the variables were named in
+the same language. To make them accessible to non-Portuguese-speaking
+researchers, we should rename the columns translating them to English.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{namesEN }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"record\_id"}\NormalTok{, }\StringTok{"redcap\_event\_name"}\NormalTok{, }\StringTok{"sex"}\NormalTok{, }\StringTok{"age"}\NormalTok{, }\StringTok{"race"}\NormalTok{, }\StringTok{"marital\_status"}\NormalTok{, }\StringTok{"education"}\NormalTok{, }\StringTok{"work\_status"}\NormalTok{, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"dsm\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{), }\StringTok{"isi\_1a"}\NormalTok{, }\StringTok{"isi\_1b"}\NormalTok{, }\StringTok{"isi\_1c"}\NormalTok{, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"isi\_"}\NormalTok{, }\DecValTok{2}\SpecialCharTok{:}\DecValTok{5}\NormalTok{), }\StringTok{"isi\_total"}\NormalTok{, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"hads\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{14}\NormalTok{), }\StringTok{"hads\_depression"}\NormalTok{, }\StringTok{"hads\_anxiety"}\NormalTok{, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"aaq\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{), }\FunctionTok{paste0}\NormalTok{(}\StringTok{"dbas16\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{16}\NormalTok{), }\StringTok{"dbas10\_04"}\NormalTok{, }\StringTok{"dbas10\_10"}\NormalTok{, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"spaq\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{), }\FunctionTok{paste0}\NormalTok{(}\StringTok{"sas\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{))}
+
+\FunctionTok{names}\NormalTok{(clean\_data) }\OtherTok{\textless{}{-}}\NormalTok{ namesEN}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{saving-the-clean-dataset}{%
+\section{Saving the clean dataset}\label{saving-the-clean-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{readr}\SpecialCharTok{::}\FunctionTok{write\_csv}\NormalTok{(clean\_data, }\StringTok{"data/clean\_data/clean\_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{data-screening}{%
+\chapter{Data screening}\label{data-screening}}
+
+In this phase we examined response frequency and item statistics to
+assess item variation, distribution, and data entry. We also
+investigated inter-item correlations and searched for unusual response
+patterns by identifying multivariate outliers using Mahalanobis
+distance.
+
+\hypertarget{loading-the-required-packages-and-data}{%
+\section{Loading the required packages and
+data}\label{loading-the-required-packages-and-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(modelsummary)}
+\FunctionTok{library}\NormalTok{(lavaan)}
+\FunctionTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OtherTok{\textless{}{-}}\NormalTok{ readr}\SpecialCharTok{::}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/clean\_data/clean\_data.csv"}\NormalTok{)}
+
+\NormalTok{arm1 }\OtherTok{\textless{}{-}}\NormalTok{ mydata }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(redcap\_event\_name }\SpecialCharTok{==} \StringTok{"elegibilidade\_arm\_1"}\NormalTok{,}
+                \SpecialCharTok{!}\NormalTok{dplyr}\SpecialCharTok{::}\FunctionTok{if\_all}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"sas\_"}\NormalTok{), }\SpecialCharTok{\textasciitilde{}} \FunctionTok{is.na}\NormalTok{(.))) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(record\_id, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"sas\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Sample size: 1345.
+
+\hypertarget{descriptives}{%
+\section{Descriptives}\label{descriptives}}
+
+\hypertarget{response-frequecy}{%
+\subsection{Response frequecy}\label{response-frequecy}}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrrrrr>{}r}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max &   \\
+\midrule
+sas\_1 & 7 & 0 & \num{3.6} & \num{1.9} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9889c79b9.pdf}\\
+sas\_2 & 7 & 0 & \num{3.4} & \num{1.8} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e984da451d.pdf}\\
+sas\_3 & 7 & 0 & \num{3.7} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9846ae1fef.pdf}\\
+sas\_4 & 7 & 0 & \num{3.9} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e98171a49f.pdf}\\
+sas\_5 & 7 & 0 & \num{3.6} & \num{2.0} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9838076f7.pdf}\\
+sas\_6 & 7 & 0 & \num{4.2} & \num{2.3} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9856f12452.pdf}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sas\_transposed }\OtherTok{\textless{}{-}}\NormalTok{ arm1[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{] }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{everything}\NormalTok{(), }\AttributeTok{names\_to =} \StringTok{"item"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"score"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{score =} \FunctionTok{factor}\NormalTok{(score, }\AttributeTok{levels=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{7}\NormalTok{),}
+                \AttributeTok{item =} \FunctionTok{factor}\NormalTok{(item, }\AttributeTok{levels=}\FunctionTok{paste0}\NormalTok{(}\StringTok{"sas\_"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{)))}
+
+\FunctionTok{datasummary}\NormalTok{(item }\SpecialCharTok{\textasciitilde{}}\NormalTok{ score }\SpecialCharTok{*}\NormalTok{ (N }\SpecialCharTok{+} \FunctionTok{Heading}\NormalTok{(}\StringTok{"\%"}\NormalTok{)}\SpecialCharTok{*} \FunctionTok{Percent}\NormalTok{(}\StringTok{"row"}\NormalTok{)), }\AttributeTok{data=}\NormalTok{sas\_transposed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{2}{c}{1} & \multicolumn{2}{c}{2} & \multicolumn{2}{c}{3} & \multicolumn{2}{c}{4} & \multicolumn{2}{c}{5} & \multicolumn{2}{c}{6} & \multicolumn{2}{c}{7} \\
+\cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-5} \cmidrule(l{3pt}r{3pt}){6-7} \cmidrule(l{3pt}r{3pt}){8-9} \cmidrule(l{3pt}r{3pt}){10-11} \cmidrule(l{3pt}r{3pt}){12-13} \cmidrule(l{3pt}r{3pt}){14-15}
+item & N & % & N & % & N & % & N & % & N & % & N & % & N & %\\
+\midrule
+sas\_1 & 239 & \num{17.77} & 236 & \num{17.55} & 152 & \num{11.30} & 276 & \num{20.52} & 190 & \num{14.13} & 161 & \num{11.97} & 91 & \num{6.77}\\
+sas\_2 & 272 & \num{20.22} & 234 & \num{17.40} & 135 & \num{10.04} & 326 & \num{24.24} & 190 & \num{14.13} & 122 & \num{9.07} & 66 & \num{4.91}\\
+sas\_3 & 377 & \num{28.03} & 109 & \num{8.10} & 96 & \num{7.14} & 232 & \num{17.25} & 183 & \num{13.61} & 167 & \num{12.42} & 181 & \num{13.46}\\
+sas\_4 & 349 & \num{25.95} & 113 & \num{8.40} & 85 & \num{6.32} & 217 & \num{16.13} & 194 & \num{14.42} & 184 & \num{13.68} & 203 & \num{15.09}\\
+sas\_5 & 299 & \num{22.23} & 180 & \num{13.38} & 123 & \num{9.14} & 297 & \num{22.08} & 187 & \num{13.90} & 126 & \num{9.37} & 133 & \num{9.89}\\
+sas\_6 & 287 & \num{21.34} & 127 & \num{9.44} & 73 & \num{5.43} & 198 & \num{14.72} & 158 & \num{11.75} & 173 & \num{12.86} & 329 & \num{24.46}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sas\_transposed }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{item =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"SAS"}\NormalTok{, stringr}\SpecialCharTok{::}\FunctionTok{str\_replace}\NormalTok{(item, }\StringTok{"sas\_"}\NormalTok{, }\StringTok{""}\NormalTok{))) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(score)) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{score =} \FunctionTok{factor}\NormalTok{(score, }\AttributeTok{levels=}\DecValTok{7}\SpecialCharTok{:}\DecValTok{1}\NormalTok{),}
+                \AttributeTok{item =} \FunctionTok{factor}\NormalTok{(item, }\AttributeTok{levels=}\FunctionTok{paste0}\NormalTok{(}\StringTok{"SAS"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{))) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ item, }\AttributeTok{fill =}\NormalTok{ score)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_viridis\_d}\NormalTok{(}\AttributeTok{option =} \StringTok{"A"}\NormalTok{, }\AttributeTok{begin =}\NormalTok{ .}\DecValTok{4}\NormalTok{, }\AttributeTok{end =}\NormalTok{ .}\DecValTok{9}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{(}\DecValTok{16}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{fill=}\StringTok{"Score"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frequency"}\NormalTok{, }\AttributeTok{x =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{02_data-screening_files/figure-pdf/item-summary-plot-1.pdf}
+
+}
+
+\end{figure}
+
+\hypertarget{zero-order-correlation}{%
+\subsection{Zero-order correlation}\label{zero-order-correlation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelsummary}\SpecialCharTok{::}\FunctionTok{datasummary\_correlation}\NormalTok{(arm1[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrrrr}
+\toprule
+  & sas\_1 & sas\_2 & sas\_3 & sas\_4 & sas\_5 & sas\_6\\
+\midrule
+sas\_1 & 1 & . & . & . & . & .\\
+sas\_2 & \num{.36} & 1 & . & . & . & .\\
+sas\_3 & \num{.35} & \num{.44} & 1 & . & . & .\\
+sas\_4 & \num{.35} & \num{.45} & \num{.86} & 1 & . & .\\
+sas\_5 & \num{.35} & \num{.53} & \num{.72} & \num{.75} & 1 & .\\
+sas\_6 & \num{.38} & \num{.45} & \num{.80} & \num{.79} & \num{.72} & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sas\_cor }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(arm1[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], }\AttributeTok{use=}\StringTok{"pairwise.complete.obs"}\NormalTok{, }\AttributeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(sas\_cor) }\OtherTok{\textless{}{-}} \FunctionTok{rownames}\NormalTok{(sas\_cor) }\OtherTok{\textless{}{-}}  \FunctionTok{paste0}\NormalTok{(}\StringTok{"SAS"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{)}
+\FunctionTok{corrplot}\NormalTok{(sas\_cor, }\AttributeTok{method =} \StringTok{"shade"}\NormalTok{, }\AttributeTok{shade.col =} \ConstantTok{NA}\NormalTok{, }\AttributeTok{tl.col =} \StringTok{"black"}\NormalTok{, }\AttributeTok{tl.srt =} \DecValTok{45}\NormalTok{, }\AttributeTok{type=}\StringTok{"full"}\NormalTok{, }
+          \AttributeTok{addCoef.col =} \StringTok{"black"}\NormalTok{, }\AttributeTok{cl.pos =} \StringTok{"n"}\NormalTok{, }\AttributeTok{order =} \StringTok{"original"}\NormalTok{, }\AttributeTok{tl.cex =}\NormalTok{ .}\DecValTok{8}\NormalTok{, }\AttributeTok{number.cex=}\NormalTok{.}\DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{02_data-screening_files/figure-pdf/correlation-plot-1.pdf}
+
+}
+
+\end{figure}
+
+\hypertarget{inspecting-outliers}{%
+\subsection{Inspecting outliers}\label{inspecting-outliers}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d2mydata }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{outlier}\NormalTok{(arm1[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], }\AttributeTok{cex=}\NormalTok{.}\DecValTok{6}\NormalTok{, }\AttributeTok{bad=}\DecValTok{3}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{130}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{02_data-screening_files/figure-pdf/mahal-dist-1.pdf}
+
+}
+
+\end{figure}
+
+There were 12 respondents with D\textsuperscript{2} values with
+probability values \textless.001 (considering a chi-squared distribution
+with df = 7). The maximum D\textsuperscript{2} value is 37.86.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{outliers\_md }\OtherTok{\textless{}{-}}\NormalTok{ arm1[((}\DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pchisq}\NormalTok{(d2mydata, }\FunctionTok{ncol}\NormalTok{(arm1)))}\SpecialCharTok{\textless{}}\NormalTok{.}\DecValTok{001}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfd2 }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{enframe}\NormalTok{(d2mydata) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{name =}\NormalTok{ arm1}\SpecialCharTok{$}\NormalTok{record\_id)}
+\NormalTok{dplyr}\SpecialCharTok{::}\FunctionTok{arrange}\NormalTok{(dfd2, }\FunctionTok{desc}\NormalTok{(value)) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{r|r}
+\hline
+name & value\\
+\hline
+189 & 37.85508\\
+\hline
+897 & 34.49580\\
+\hline
+2984 & 33.81689\\
+\hline
+87 & 31.17334\\
+\hline
+446 & 31.08969\\
+\hline
+1379 & 31.06311\\
+\hline
+2398 & 28.70593\\
+\hline
+604 & 25.27556\\
+\hline
+1969 & 24.93636\\
+\hline
+2838 & 24.85083\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfd2 }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{x =} \StringTok{"MD"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{x, }\AttributeTok{y=}\NormalTok{value))}\SpecialCharTok{+}
+    \FunctionTok{geom\_violin}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{, }\AttributeTok{trim =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{draw\_quantiles =} \FunctionTok{c}\NormalTok{(.}\DecValTok{25}\NormalTok{, .}\DecValTok{50}\NormalTok{, .}\DecValTok{75}\NormalTok{))}\SpecialCharTok{+}
+    \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{width =}\NormalTok{ .}\DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{7}\NormalTok{, }\AttributeTok{fatten =} \ConstantTok{NULL}\NormalTok{)}\SpecialCharTok{+}
+    \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{(}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x=}\FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{y =} \StringTok{"Observed MD values"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\FunctionTok{ifelse}\NormalTok{(value}\SpecialCharTok{\textgreater{}}\DecValTok{25}\NormalTok{,}\FunctionTok{as.character}\NormalTok{(name),}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)),}\AttributeTok{hjust=}\SpecialCharTok{{-}}\FloatTok{0.3}\NormalTok{,}\AttributeTok{vjust=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{02_data-screening_files/figure-pdf/md-distribution-1.pdf}
+
+}
+
+\end{figure}
+
+\hypertarget{outliers-response-pattern-analysis}{%
+\subsection{Outliers response pattern
+analysis}\label{outliers-response-pattern-analysis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{outliers\_sas }\OtherTok{\textless{}{-}}  \FunctionTok{which}\NormalTok{((}\DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pchisq}\NormalTok{(d2mydata, }\FunctionTok{ncol}\NormalTok{(arm1)))}\SpecialCharTok{\textless{}}\NormalTok{.}\DecValTok{001}\NormalTok{)}
+
+\NormalTok{arm1[}\FunctionTok{as.double}\NormalTok{(}\FunctionTok{names}\NormalTok{(outliers\_sas)), ] }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{r|r|r|r|r|r|r}
+\hline
+record\_id & sas\_1 & sas\_2 & sas\_3 & sas\_4 & sas\_5 & sas\_6\\
+\hline
+87 & 6 & 1 & 7 & 7 & 1 & 2\\
+\hline
+189 & 7 & 1 & 5 & 7 & 7 & 1\\
+\hline
+261 & 4 & 7 & 2 & 7 & 7 & 6\\
+\hline
+446 & 4 & 5 & 1 & 7 & 7 & 5\\
+\hline
+604 & 3 & 1 & 1 & 4 & 7 & 2\\
+\hline
+897 & 7 & 1 & 7 & 7 & 3 & 1\\
+\hline
+1379 & 6 & 1 & 1 & 6 & 3 & 7\\
+\hline
+1969 & 5 & 1 & 6 & 2 & 1 & 1\\
+\hline
+2398 & 4 & 2 & 7 & 2 & 1 & 2\\
+\hline
+2838 & 4 & 5 & 1 & 1 & 6 & 7\\
+\hline
+2984 & 1 & 1 & 7 & 7 & 1 & 1\\
+\hline
+3079 & 7 & 6 & 1 & 1 & 7 & 3\\
+\hline
+\end{tabular}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{dimensionality-analyses}{%
+\chapter{Dimensionality Analyses}\label{dimensionality-analyses}}
+
+\hypertarget{loading-the-required-packages-1}{%
+\section{Loading the required
+packages}\label{loading-the-required-packages-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(psychTools)}
+\FunctionTok{library}\NormalTok{(EGAnet)}
+\FunctionTok{library}\NormalTok{(qgraph)}
+\FunctionTok{library}\NormalTok{(lavaan)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{items }\OtherTok{\textless{}{-}}\NormalTok{ arm1[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{8}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{detecting-redundancy-with-unique-variable-analysis}{%
+\section{Detecting redundancy with Unique Variable
+Analysis}\label{detecting-redundancy-with-unique-variable-analysis}}
+
+When modeling psychological data, redundant items can lead to unintended
+effects, make it difficult to interpret centrality measures in network
+models, and violate the principle of local independence in latent
+variable models (Christensen et al., 2023). Unique Variable Analysis
+(Christensen et al., 2023) can identify redundant items using network
+modeling and a graph theory measure called weighted topological overlap
+(wTO). UVA identifies locally dependent pairs of variables and uses the
+false discovery rate (FDR) to assess the expected count of false
+positives.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{redund }\OtherTok{\textless{}{-}}\NormalTok{ EGAnet}\SpecialCharTok{::}\FunctionTok{UVA}\NormalTok{(}\AttributeTok{data=}\NormalTok{items[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{7}\NormalTok{], }\AttributeTok{method=}\StringTok{"wTO"}\NormalTok{, }\AttributeTok{type=}\StringTok{"threshold"}\NormalTok{,  }\AttributeTok{corr =}  \StringTok{"spearman"}\NormalTok{,}
+                    \AttributeTok{reduce=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{adhoc=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{plot.redundancy=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{reduce.method =} \StringTok{"remove"}\NormalTok{) }
+\NormalTok{redund.items }\OtherTok{\textless{}{-}}\NormalTok{ redund}\SpecialCharTok{$}\NormalTok{redundancy}\SpecialCharTok{$}\NormalTok{redundant}
+\end{Highlighting}
+\end{Shaded}
+
+High redundancies were found between items sas\_3 (``The thought of
+going to sleep makes me uneasy.''), sas\_4 (``I have negative feelings
+towards my sleep.''), and sas\_6 (``I am scared of not being able to
+fall asleep.'').
+
+\hypertarget{dimensionality-estimation}{%
+\section{Dimensionality Estimation}\label{dimensionality-estimation}}
+
+To estimate the number of dimensions, we used Exploratory Graph Analysis
+H. Golino et al. (2020), a recently developed method of dimensionality
+assessment from network psychometrics. This method employs undirected
+network models to determine the number of dimensions in multivariate
+data. Firstly, the EGA algorithm estimates the network using either the
+Graphical Least Absolute Shrinkage and Selection Operator (GLASSO) or
+the Triangulated Maximally Filtered Graph (TMFG). Then, it applies a
+community detection algorithm to identify the number and content of
+communities in the network. These communities are statistically
+equivalent to factors of latent variable models (H. F. Golino \&
+Epskamp, 2017). As recommended by (H. Golino et al., 2020), we used both
+GLASSO and TMFG methods to estimate the psychometric networks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# EGA (with redundancy) }
+\NormalTok{ega.wr.tmfg }\OtherTok{\textless{}{-}} \FunctionTok{EGA}\NormalTok{(items[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{7}\NormalTok{], }\AttributeTok{algorithm =} \StringTok{"walktrap"}\NormalTok{, }\AttributeTok{model =} \StringTok{"TMFG"}\NormalTok{,  }\AttributeTok{corr =}  \StringTok{"spearman"}\NormalTok{,}
+              \AttributeTok{plot.EGA =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{uni.method =} \StringTok{"LE"}\NormalTok{) }
+
+\NormalTok{ega.wr.glasso }\OtherTok{\textless{}{-}} \FunctionTok{EGA}\NormalTok{(items[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{7}\NormalTok{], }\AttributeTok{algorithm =} \StringTok{"walktrap"}\NormalTok{, }\AttributeTok{model =} \StringTok{"glasso"}\NormalTok{, }\AttributeTok{corr =}  \StringTok{"spearman"}\NormalTok{,}
+              \AttributeTok{plot.EGA =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{uni.method =} \StringTok{"LE"}\NormalTok{,}\AttributeTok{plot.args =} \FunctionTok{list}\NormalTok{()) }
+
+
+\NormalTok{comp.plots.wr }\OtherTok{\textless{}{-}}\NormalTok{ EGAnet}\SpecialCharTok{::}\FunctionTok{compare.EGA.plots}\NormalTok{(}
+\NormalTok{  ega.wr.glasso, ega.wr.tmfg,}
+  \AttributeTok{base.plot =} \DecValTok{1}\NormalTok{,}
+  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"GLASSO"}\NormalTok{, }\StringTok{"TMFG"}\NormalTok{),}
+  \AttributeTok{rows =} \DecValTok{1}\NormalTok{, }\AttributeTok{columns =} \DecValTok{2}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{03_dimensionality-analysis_files/figure-pdf/ega-with-redundancy-1.pdf}
+
+}
+
+\end{figure}
+
+\hypertarget{structural-consistency}{%
+\subsection{Structural consistency}\label{structural-consistency}}
+
+As a way to assess internal consistency from the network perspective,
+BootEGA generates a sampling distribution of EGA results from replicate
+data. It informs how often dimensions are exactly recovered (structural
+consistency) and how often each item is allocated in its respective
+empirical dimension (item stability).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{boot.tmfg.wr }\OtherTok{\textless{}{-}} \FunctionTok{bootEGA}\NormalTok{(items[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{7}\NormalTok{], }\AttributeTok{iter =} \DecValTok{1000}\NormalTok{, }\AttributeTok{model =} \StringTok{"TMFG"}\NormalTok{, }\AttributeTok{type =} \StringTok{"parametric"}\NormalTok{, }\AttributeTok{corr =}  \StringTok{"spearman"}\NormalTok{, }\AttributeTok{algorithm =} \StringTok{"walktrap"}\NormalTok{, }\AttributeTok{plot.typicalStructure =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{boot.glasso.wr }\OtherTok{\textless{}{-}} \FunctionTok{bootEGA}\NormalTok{(items[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{7}\NormalTok{], }\AttributeTok{iter =} \DecValTok{1000}\NormalTok{, }\AttributeTok{model =} \StringTok{"glasso"}\NormalTok{, }\AttributeTok{type =} \StringTok{"parametric"}\NormalTok{, }\AttributeTok{corr =}  \StringTok{"spearman"}\NormalTok{, }\AttributeTok{plot.typicalStructure =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Descriptive statistics }
+\NormalTok{desc.stab.wr }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(boot.tmfg.wr}\SpecialCharTok{$}\NormalTok{summary.table, boot.glasso.wr}\SpecialCharTok{$}\NormalTok{summary.table)}
+\FunctionTok{row.names}\NormalTok{(desc.stab.wr) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"TMFG"}\NormalTok{, }\StringTok{"GLASSO"}\NormalTok{)}
+\FunctionTok{kbl}\NormalTok{(desc.stab.wr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r|r|r|r|r|r|r|r}
+\hline
+  & n.Boots & median.dim & SE.dim & CI.dim & Lower.CI & Upper.CI & Lower.Quantile & Upper.Quantile\\
+\hline
+TMFG & 1000 & 1 & 0 & 0 & 1 & 1 & 1 & 1\\
+\hline
+GLASSO & 1000 & 1 & 0 & 0 & 1 & 1 & 1 & 1\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Frequency of dimensions }
+
+\NormalTok{dim.freq.wr }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(boot.tmfg.wr}\SpecialCharTok{$}\NormalTok{frequency, boot.glasso.wr}\SpecialCharTok{$}\NormalTok{frequency)}
+\FunctionTok{row.names}\NormalTok{(dim.freq.wr) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"TMFG"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(boot.tmfg.wr}\SpecialCharTok{$}\NormalTok{frequency)), }
+                            \FunctionTok{rep}\NormalTok{(}\StringTok{"GLASSO"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(boot.glasso.wr}\SpecialCharTok{$}\NormalTok{frequency)))}
+\NormalTok{dim.freq.wr }\SpecialCharTok{|\textgreater{}} \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r|r}
+\hline
+  & \# of Factors & Frequency\\
+\hline
+TMFG & 1 & 1\\
+\hline
+GLASSO & 1 & 1\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# structural consistency}
+\NormalTok{dim.stab.wr.tmfg }\OtherTok{\textless{}{-}} \FunctionTok{dimensionStability}\NormalTok{(boot.tmfg.wr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{03_dimensionality-analysis_files/figure-pdf/structural-consistency-wr-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dim.stab.wr.glasso }\OtherTok{\textless{}{-}} \FunctionTok{dimensionStability}\NormalTok{(boot.glasso.wr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{03_dimensionality-analysis_files/figure-pdf/structural-consistency-wr-2.pdf}
+
+}
+
+\end{figure}
+
+\hypertarget{standardized-node-strenght}{%
+\subsection{Standardized node
+strenght}\label{standardized-node-strenght}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compute standardized node strength }
+\FunctionTok{kbl}\NormalTok{(}\FunctionTok{net.loads}\NormalTok{(ega.wr.glasso)}\SpecialCharTok{$}\NormalTok{std,}
+    \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Item"}\NormalTok{, }\StringTok{"Network loading"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r}
+\hline
+Item & Network loading\\
+\hline
+sas\_4 & 0.4713846\\
+\hline
+sas\_3 & 0.4577097\\
+\hline
+sas\_6 & 0.4187228\\
+\hline
+sas\_5 & 0.4166646\\
+\hline
+sas\_2 & 0.2331131\\
+\hline
+sas\_1 & 0.1605713\\
+\hline
+\end{tabular}
+
+\hypertarget{confirmatory-factor-analysis}{%
+\subsection{Confirmatory Factor
+Analysis}\label{confirmatory-factor-analysis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_sas }\OtherTok{\textless{}{-}} \StringTok{"}
+
+\StringTok{SAS =\textasciitilde{} sas\_1 + sas\_2 + sas\_3 + sas\_4 + sas\_5 + sas\_6}
+
+\StringTok{"}
+\NormalTok{fit\_sas }\OtherTok{\textless{}{-}}\NormalTok{ lavaan}\SpecialCharTok{::}\FunctionTok{cfa}\NormalTok{(}\AttributeTok{model =}\NormalTok{ model\_sas,}
+                        \AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ordered=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{data =}\NormalTok{ items)}
+
+\NormalTok{semTools}\SpecialCharTok{::}\FunctionTok{fitmeasures}\NormalTok{(fit\_sas, }
+                         \AttributeTok{fit.measures =} \FunctionTok{c}\NormalTok{(}\StringTok{"rmsea"}\NormalTok{, }\StringTok{"rmsea.ci.lower"}\NormalTok{, }\StringTok{"rmsea.ci.upper"}\NormalTok{, }\StringTok{"cfi"}\NormalTok{,}
+                                          \StringTok{"rmsea.robust"}\NormalTok{, }\StringTok{"rmsea.ci.lower.robust"}\NormalTok{, }\StringTok{"rmsea.ci.upper.robust"}\NormalTok{, }\StringTok{"tli.robust"}\NormalTok{, }\StringTok{"cfi.robust"}\NormalTok{, }\StringTok{"srmr\_bentler"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{(}\AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Index"}\NormalTok{, }\StringTok{"Value"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r}
+\hline
+Index & Value\\
+\hline
+rmsea & 0.08600869\\
+\hline
+rmsea.ci.lower & 0.07115102\\
+\hline
+rmsea.ci.upper & 0.10173106\\
+\hline
+cfi & 0.99841486\\
+\hline
+rmsea.robust & 0.14231055\\
+\hline
+rmsea.ci.lower.robust & 0.12550274\\
+\hline
+rmsea.ci.upper.robust & 0.15983269\\
+\hline
+tli.robust & 0.93552930\\
+\hline
+cfi.robust & 0.96131758\\
+\hline
+srmr\_bentler & 0.02621635\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lavaan}\SpecialCharTok{::}\FunctionTok{modindices}\NormalTok{(fit\_sas) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{arrange}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{mi) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|l|l|r|r|r|r|r}
+\hline
+lhs & op & rhs & mi & epc & sepc.lv & sepc.all & sepc.nox\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_2 & 39.616441 & 0.1481917 & 0.1481917 & 0.2056333 & 0.2056333\\
+\hline
+sas\_2 & \textasciitilde{}\textasciitilde{} & sas\_5 & 28.317899 & 0.1171795 & 0.1171795 & 0.2686471 & 0.2686471\\
+\hline
+sas\_3 & \textasciitilde{}\textasciitilde{} & sas\_4 & 28.203333 & 0.0911693 & 0.0911693 & 0.8091541 & 0.8091541\\
+\hline
+sas\_2 & \textasciitilde{}\textasciitilde{} & sas\_3 & 16.439725 & -0.1019714 & -0.1019714 & -0.3595978 & -0.3595978\\
+\hline
+sas\_3 & \textasciitilde{}\textasciitilde{} & sas\_5 & 12.505353 & -0.0597031 & -0.0597031 & -0.3191656 & -0.3191656\\
+\hline
+sas\_2 & \textasciitilde{}\textasciitilde{} & sas\_4 & 11.421805 & -0.0851128 & -0.0851128 & -0.3239582 & -0.3239582\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_4 & 6.739732 & -0.0714343 & -0.0714343 & -0.2494711 & -0.2494711\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_3 & 5.187159 & -0.0623256 & -0.0623256 & -0.2016622 & -0.2016622\\
+\hline
+sas\_5 & \textasciitilde{}\textasciitilde{} & sas\_6 & 5.068341 & 0.0354439 & 0.0354439 & 0.1433690 & 0.1433690\\
+\hline
+sas\_4 & \textasciitilde{}\textasciitilde{} & sas\_6 & 4.281294 & -0.0356978 & -0.0356978 & -0.2397277 & -0.2397277\\
+\hline
+\end{tabular}
+
+\hypertarget{factor-loadings}{%
+\subsubsection{Factor loadings}\label{factor-loadings}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{inspect}\NormalTok{(fit\_sas,}\AttributeTok{what=}\StringTok{"std"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{lambda }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{(}\AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Item"}\NormalTok{, }\StringTok{"Std. Loading"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r}
+\hline
+Item & Std. Loading\\
+\hline
+sas\_1 & 0.4632094\\
+\hline
+sas\_2 & 0.5820430\\
+\hline
+sas\_3 & 0.9372241\\
+\hline
+sas\_4 & 0.9463663\\
+\hline
+sas\_5 & 0.8439593\\
+\hline
+sas\_6 & 0.8874601\\
+\hline
+\end{tabular}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{invariance}{%
+\chapter{Invariance}\label{invariance}}
+
+We examined whether our scale's psychometric properties were equal
+across groups with and without insomnia symptoms and across time points,
+comparing baseline test scores to a second administration taken 14 days
+later. To do this, we tested invariance by restricting the measurement
+properties across groups/time in increasing levels of stringency. We
+tested in a sequence of factor structure (configural invariance), factor
+loadings (metric invariance), items' intercepts (scalar invariance), and
+items' residual variances (strict invariance) (Flake \& Luong, 2021). If
+a level of non-invariance was detected, no further tests were conducted.
+The criteria used to evaluate model fit were the chi-squared difference
+test for goodness of fit and alternative fit indices like \(\Delta\)CFI,
+\(\Delta\)RMSEA, and \(\Delta\)SRMR
+
+\hypertarget{loading-the-required-packages-2}{%
+\section{Loading the required
+packages}\label{loading-the-required-packages-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(semTools)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{longitudinal-invariance}{%
+\section{Longitudinal invariance}\label{longitudinal-invariance}}
+
+\hypertarget{configural-invariance}{%
+\subsection{Configural invariance}\label{configural-invariance}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{long\_configural\_model }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}}
+
+\StringTok{SAS.1 =\textasciitilde{} sas\_1.1 + sas\_2.1 + sas\_3.1 + sas\_4.1 + sas\_5.1 + sas\_6.1}
+
+\StringTok{SAS.2 =\textasciitilde{} sas\_1.2 + sas\_2.2 + sas\_3.2 + sas\_4.2 + sas\_5.2 + sas\_6.2}
+
+\StringTok{\textquotesingle{}}
+
+\NormalTok{longFacNames }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{ (}\AttributeTok{SAS =} \FunctionTok{c}\NormalTok{(}\StringTok{"SAS.1"}\NormalTok{, }\StringTok{"SAS.2"}\NormalTok{))}
+
+\NormalTok{syntax\_long\_config }\OtherTok{\textless{}{-}} \FunctionTok{measEq.syntax}\NormalTok{(}\AttributeTok{configural.model =}\NormalTok{ long\_configural\_model,}
+                               \AttributeTok{data =}\NormalTok{ data\_longitudinal,}
+                               \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{,}
+                               \AttributeTok{ID.fac =} \StringTok{"std.lv"}\NormalTok{, }\AttributeTok{ID.cat =} \StringTok{"Wu.Estabrook.2016"}\NormalTok{,}
+                               \AttributeTok{longFacNames =}\NormalTok{ longFacNames)}
+
+\NormalTok{mod\_long\_config }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(syntax\_long\_config)}
+
+\NormalTok{fit\_long\_config }\OtherTok{\textless{}{-}} \FunctionTok{cfa}\NormalTok{(mod\_long\_config, }
+                      \AttributeTok{data =}\NormalTok{ data\_longitudinal, }
+                      \AttributeTok{estimator =} \StringTok{"DWLS"}\NormalTok{, }
+                      \AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{semTools}\SpecialCharTok{::}\FunctionTok{fitmeasures}\NormalTok{(fit\_long\_config, }\AttributeTok{fit.measures =} \FunctionTok{c}\NormalTok{(}\StringTok{"rmsea"}\NormalTok{, }\StringTok{"rmsea.ci.lower"}\NormalTok{, }\StringTok{"rmsea.ci.upper"}\NormalTok{, }\StringTok{"cfi"}\NormalTok{, }\StringTok{"srmr\_bentler"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{(}\AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Index"}\NormalTok{, }\StringTok{"Value"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r}
+\hline
+Index & Value\\
+\hline
+rmsea & 0.04255947\\
+\hline
+rmsea.ci.lower & 0.03466296\\
+\hline
+rmsea.ci.upper & 0.05065500\\
+\hline
+cfi & 0.99696997\\
+\hline
+srmr\_bentler & 0.03740498\\
+\hline
+\end{tabular}
+
+\hypertarget{metric-invariance}{%
+\subsection{Metric invariance}\label{metric-invariance}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{syntax\_long\_metric }\OtherTok{\textless{}{-}} \FunctionTok{measEq.syntax}\NormalTok{(}\AttributeTok{configural.model =}\NormalTok{ long\_configural\_model,}
+                               \AttributeTok{data =}\NormalTok{ data\_longitudinal,}
+                               \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{,}
+                               \AttributeTok{ID.fac =} \StringTok{"std.lv"}\NormalTok{, }\AttributeTok{ID.cat =} \StringTok{"Wu.Estabrook.2016"}\NormalTok{,}
+                               \AttributeTok{longFacNames =}\NormalTok{ longFacNames,}
+                               \AttributeTok{long.equal  =} \FunctionTok{c}\NormalTok{(}\StringTok{"thresholds"}\NormalTok{,}\StringTok{"loadings"}\NormalTok{))}
+
+\NormalTok{mod\_long\_metric }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(syntax\_long\_metric)}
+
+\NormalTok{fit\_long\_metric }\OtherTok{\textless{}{-}} \FunctionTok{cfa}\NormalTok{(mod\_long\_metric, }\AttributeTok{data =}\NormalTok{ data\_longitudinal, }\AttributeTok{estimator =} \StringTok{"DWLS"}\NormalTok{,}
+                  \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{, }\AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{conf\_met\_long }\OtherTok{\textless{}{-}} \FunctionTok{compareFit}\NormalTok{(fit\_long\_config, fit\_long\_metric)}
+
+\FunctionTok{lavTestLRT}\NormalTok{(fit\_long\_config, fit\_long\_metric, }\AttributeTok{method=}\StringTok{"satorra.bentler.2010"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{() }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r|l|l|r|r|r|r|r}
+\hline
+term & df & AIC & BIC & statistic & Chisq.diff & RMSEA & Df.diff & p.value\\
+\hline
+fit\_long\_config & 47 & NA & NA & 142.4324 & NA & NA & NA & NA\\
+\hline
+fit\_long\_metric & 52 & NA & NA & 147.2219 & 4.789477 & 0 & 5 & 0.4421093\\
+\hline
+\end{tabular}
+
+\hypertarget{scalar-invariance}{%
+\subsection{Scalar invariance}\label{scalar-invariance}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{syntax\_long\_scalar }\OtherTok{\textless{}{-}} \FunctionTok{measEq.syntax}\NormalTok{(}\AttributeTok{configural.model =}\NormalTok{ long\_configural\_model,}
+                               \AttributeTok{data =}\NormalTok{ data\_longitudinal,}
+                               \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{,}
+                               \AttributeTok{ID.fac =} \StringTok{"std.lv"}\NormalTok{, }\AttributeTok{ID.cat =} \StringTok{"Wu.Estabrook.2016"}\NormalTok{,}
+                               \AttributeTok{longFacNames =}\NormalTok{ longFacNames,}
+                               \AttributeTok{long.equal  =} \FunctionTok{c}\NormalTok{(}\StringTok{"thresholds"}\NormalTok{,}\StringTok{"loadings"}\NormalTok{,}
+                                               \StringTok{"intercepts"}\NormalTok{))}
+\NormalTok{mod\_long\_scalar }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(syntax\_long\_scalar)}
+\NormalTok{fit\_long\_scalar }\OtherTok{\textless{}{-}} \FunctionTok{cfa}\NormalTok{(mod\_long\_scalar, }\AttributeTok{data =}\NormalTok{ data\_longitudinal, }\AttributeTok{estimator =} \StringTok{"DWLS"}\NormalTok{,}
+                  \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{, }\AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{anova}\NormalTok{(fit\_long\_config, fit\_long\_metric, fit\_long\_scalar, }\AttributeTok{method =} \StringTok{"satorra.bentler.2010"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{() }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r|l|l|r|r|r|r|r}
+\hline
+term & df & AIC & BIC & statistic & Chisq.diff & RMSEA & Df.diff & p.value\\
+\hline
+fit\_long\_config & 47 & NA & NA & 142.4324 & NA & NA & NA & NA\\
+\hline
+fit\_long\_metric & 52 & NA & NA & 147.2219 & 4.789477 & 0.0000000 & 5 & 0.4421093\\
+\hline
+fit\_long\_scalar & 57 & NA & NA & 152.3009 & 5.079028 & 0.0037533 & 5 & 0.4063119\\
+\hline
+\end{tabular}
+
+\hypertarget{strict-invariance}{%
+\subsection{Strict invariance}\label{strict-invariance}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{syntax\_long\_strict }\OtherTok{\textless{}{-}} \FunctionTok{measEq.syntax}\NormalTok{(}\AttributeTok{configural.model =}\NormalTok{ long\_configural\_model,}
+                               \AttributeTok{data =}\NormalTok{ data\_longitudinal,}
+                               \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{,}
+                               \AttributeTok{ID.fac =} \StringTok{"std.lv"}\NormalTok{, }\AttributeTok{ID.cat =} \StringTok{"Wu.Estabrook.2016"}\NormalTok{,}
+                               \AttributeTok{longFacNames =}\NormalTok{ longFacNames,}
+                               \AttributeTok{long.equal  =} \FunctionTok{c}\NormalTok{(}\StringTok{"thresholds"}\NormalTok{,}\StringTok{"loadings"}\NormalTok{,}
+                                               \StringTok{"intercepts"}\NormalTok{, }\StringTok{"residuals"}\NormalTok{))}
+\NormalTok{mod\_long\_strict }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(syntax\_long\_strict)}
+\NormalTok{fit\_long\_strict }\OtherTok{\textless{}{-}} \FunctionTok{cfa}\NormalTok{(mod\_long\_strict, }\AttributeTok{data =}\NormalTok{ data\_longitudinal, }\AttributeTok{estimator =} \StringTok{"DWLS"}\NormalTok{,}
+                  \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{, }\AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{anova}\NormalTok{(fit\_long\_config, fit\_long\_metric, fit\_long\_scalar, fit\_long\_strict, }\AttributeTok{method =} \StringTok{"satorra.bentler.2010"}\NormalTok{)}\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{() }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r|l|l|r|r|r|r|r}
+\hline
+term & df & AIC & BIC & statistic & Chisq.diff & RMSEA & Df.diff & p.value\\
+\hline
+fit\_long\_config & 47 & NA & NA & 142.4324 & NA & NA & NA & NA\\
+\hline
+fit\_long\_metric & 52 & NA & NA & 147.2219 & 4.789477 & 0.0000000 & 5 & 0.4421093\\
+\hline
+fit\_long\_scalar & 57 & NA & NA & 152.3009 & 5.079028 & 0.0037533 & 5 & 0.4063119\\
+\hline
+fit\_long\_strict & 63 & NA & NA & 169.2922 & 16.991267 & 0.0404066 & 6 & 0.0093154\\
+\hline
+\end{tabular}
+
+\hypertarget{longitudinal-fit-differences}{%
+\subsection{Longitudinal fit
+differences}\label{longitudinal-fit-differences}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inv\_long }\OtherTok{\textless{}{-}} \FunctionTok{anova}\NormalTok{(fit\_long\_config, fit\_long\_metric, fit\_long\_scalar, fit\_long\_strict,}
+                  \AttributeTok{method =} \StringTok{"satorra.bentler.2010"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  tibble}\SpecialCharTok{::}\FunctionTok{as.tibble}\NormalTok{()}
+
+\NormalTok{fit\_stats\_strict }\OtherTok{\textless{}{-}} \FunctionTok{fitmeasures}\NormalTok{(fit\_long\_strict, }
+                                \AttributeTok{fit.measures =} \FunctionTok{c}\NormalTok{(}\StringTok{"rmsea"}\NormalTok{, }\StringTok{"rmsea.ci.lower"}\NormalTok{, }\StringTok{"rmsea.ci.upper"}\NormalTok{, }\StringTok{"cfi"}\NormalTok{, }\StringTok{"srmr\_bentler"}\NormalTok{))}
+
+\NormalTok{fit\_stats\_scalar }\OtherTok{\textless{}{-}} \FunctionTok{fitmeasures}\NormalTok{(fit\_long\_scalar, }
+                                \AttributeTok{fit.measures =} \FunctionTok{c}\NormalTok{(}\StringTok{"rmsea"}\NormalTok{, }\StringTok{"rmsea.ci.lower"}\NormalTok{, }\StringTok{"rmsea.ci.upper"}\NormalTok{, }\StringTok{"cfi"}\NormalTok{, }\StringTok{"srmr\_bentler"}\NormalTok{))}
+
+\NormalTok{fit\_stats\_metric }\OtherTok{\textless{}{-}} \FunctionTok{fitmeasures}\NormalTok{(fit\_long\_metric, }
+                                \AttributeTok{fit.measures =} \FunctionTok{c}\NormalTok{(}\StringTok{"rmsea"}\NormalTok{, }\StringTok{"rmsea.ci.lower"}\NormalTok{, }\StringTok{"rmsea.ci.upper"}\NormalTok{, }\StringTok{"cfi"}\NormalTok{, }\StringTok{"srmr\_bentler"}\NormalTok{))}
+
+\NormalTok{fit\_stats\_configural }\OtherTok{\textless{}{-}} \FunctionTok{fitmeasures}\NormalTok{(fit\_long\_config, }
+                                \AttributeTok{fit.measures =} \FunctionTok{c}\NormalTok{(}\StringTok{"rmsea"}\NormalTok{, }\StringTok{"rmsea.ci.lower"}\NormalTok{, }\StringTok{"rmsea.ci.upper"}\NormalTok{, }\StringTok{"cfi"}\NormalTok{, }\StringTok{"srmr\_bentler"}\NormalTok{))}
+
+\NormalTok{long\_fit\_diffs }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{enframe}\NormalTok{(}\FunctionTok{c}\NormalTok{(}
+\NormalTok{        fit\_stats\_configural }\SpecialCharTok{{-}}\NormalTok{ fit\_stats\_metric,}
+\NormalTok{        fit\_stats\_metric }\SpecialCharTok{{-}}\NormalTok{ fit\_stats\_scalar,}
+\NormalTok{        fit\_stats\_scalar }\SpecialCharTok{{-}}\NormalTok{ fit\_stats\_strict)) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"metric"}\NormalTok{, }\StringTok{"scalar"}\NormalTok{, }\StringTok{"strict"}\NormalTok{), }\AttributeTok{each=}\DecValTok{5}\NormalTok{),}
+                \AttributeTok{.before =}\NormalTok{ name) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =} \StringTok{"name"}\NormalTok{, }\AttributeTok{values\_from =} \StringTok{"value"}\NormalTok{) }
+
+\NormalTok{long\_fit\_diffs }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  kableExtra}\SpecialCharTok{::}\FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r|r|r|r|r}
+\hline
+model & rmsea & rmsea.ci.lower & rmsea.ci.upper & cfi & srmr\_bentler\\
+\hline
+metric & 0.0021425 & 0.0018503 & 0.0024717 & -6.70e-06 & -0.0005690\\
+\hline
+scalar & 0.0017973 & 0.0015456 & 0.0020820 & 2.50e-06 & -0.0006546\\
+\hline
+strict & -0.0001755 & -0.0005400 & 0.0001993 & 3.49e-04 & -0.0019603\\
+\hline
+\end{tabular}
+
+\hypertarget{invariance-across-groups-good-x-bad-sleepers}{%
+\section{Invariance across groups (good x bad
+sleepers)}\label{invariance-across-groups-good-x-bad-sleepers}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_sas }\OtherTok{\textless{}{-}} \StringTok{"}
+\StringTok{SAS =\textasciitilde{} sas\_1 + sas\_2 + sas\_3 + sas\_4 + sas\_5 + sas\_6}
+\StringTok{"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{configural-invariance-1}{%
+\subsection{Configural invariance}\label{configural-invariance-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{syntax.config.group }\OtherTok{\textless{}{-}} \FunctionTok{measEq.syntax}\NormalTok{(}\AttributeTok{configural.model =}\NormalTok{ model\_sas,}
+                               \AttributeTok{data =}\NormalTok{ items,}
+                               \AttributeTok{group =} \StringTok{"group"}\NormalTok{,}
+                               \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{,}
+                               \AttributeTok{ID.fac =} \StringTok{"std.lv"}\NormalTok{, }\AttributeTok{ID.cat =} \StringTok{"Wu.Estabrook.2016"}\NormalTok{)}
+\NormalTok{mod.config.group }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(syntax.config.group)}
+
+\NormalTok{configural.fit.group }\OtherTok{\textless{}{-}} \FunctionTok{cfa}\NormalTok{(mod.config.group, }
+                           \AttributeTok{group =} \StringTok{"group"}\NormalTok{,}
+                           \AttributeTok{data =}\NormalTok{ items,}
+                           \AttributeTok{estimator =} \StringTok{"DWLS"}\NormalTok{,}
+                           \AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{semTools}\SpecialCharTok{::}\FunctionTok{fitmeasures}\NormalTok{(configural.fit.group, }\AttributeTok{fit.measures =} \FunctionTok{c}\NormalTok{(}\StringTok{"rmsea"}\NormalTok{, }\StringTok{"rmsea.ci.lower"}\NormalTok{, }\StringTok{"rmsea.ci.upper"}\NormalTok{, }\StringTok{"cfi"}\NormalTok{, }\StringTok{"srmr\_bentler"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{(}\AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Index"}\NormalTok{, }\StringTok{"Value"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r}
+\hline
+Index & Value\\
+\hline
+rmsea & 0.06299791\\
+\hline
+rmsea.ci.lower & 0.04711457\\
+\hline
+rmsea.ci.upper & 0.07965452\\
+\hline
+cfi & 0.98393246\\
+\hline
+srmr\_bentler & 0.05358660\\
+\hline
+\end{tabular}
+
+\hypertarget{metric-invariance-1}{%
+\subsection{Metric invariance}\label{metric-invariance-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{syntax.metric.group }\OtherTok{\textless{}{-}} \FunctionTok{measEq.syntax}\NormalTok{(}\AttributeTok{configural.model =}\NormalTok{ model\_sas,}
+                               \AttributeTok{data =}\NormalTok{ items,}
+                               \AttributeTok{group =} \StringTok{"group"}\NormalTok{,}
+                               \AttributeTok{parameterization =} \StringTok{"theta"}\NormalTok{,}
+                               \AttributeTok{ID.fac =} \StringTok{"std.lv"}\NormalTok{, }\AttributeTok{ID.cat =} \StringTok{"Wu.Estabrook.2016"}\NormalTok{,}
+                               \AttributeTok{group.equal  =} \FunctionTok{c}\NormalTok{(}\StringTok{"loadings"}\NormalTok{))}
+
+\NormalTok{mod.metric.group }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(syntax.metric.group)}
+
+\NormalTok{fit.metric.group }\OtherTok{\textless{}{-}} \FunctionTok{cfa}\NormalTok{(mod.metric.group, }\AttributeTok{group =} \StringTok{"group"}\NormalTok{,}
+                           \AttributeTok{data =}\NormalTok{ items,}
+                           \AttributeTok{estimator =} \StringTok{"DWLS"}\NormalTok{,}
+                           \AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{conf.met }\OtherTok{\textless{}{-}} \FunctionTok{compareFit}\NormalTok{(configural.fit.group, fit.metric.group, }\AttributeTok{argsLRT =} \FunctionTok{list}\NormalTok{(}\AttributeTok{method =} \StringTok{"satorra.bentler.2010"}\NormalTok{))}
+
+
+\FunctionTok{lavTestLRT}\NormalTok{(configural.fit.group, fit.metric.group, }\AttributeTok{method=}\StringTok{"satorra.bentler.2010"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{() }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|r|l|l|r|r|r|r|r}
+\hline
+term & df & AIC & BIC & statistic & Chisq.diff & RMSEA & Df.diff & p.value\\
+\hline
+configural.fit.group & 18 & NA & NA & 65.97011 & NA & NA & NA & NA\\
+\hline
+fit.metric.group & 23 & NA & NA & 95.27337 & 29.30326 & 0.0850161 & 5 & 2.02e-05\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lavaan}\SpecialCharTok{::}\FunctionTok{modindices}\NormalTok{(fit.metric.group) }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{arrange}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{mi) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}[t]{l|l|l|r|r|r|r|r|r|r|r}
+\hline
+lhs & op & rhs & block & group & level & mi & epc & sepc.lv & sepc.all & sepc.nox\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_2 & 2 & 2 & 1 & 25.539286 & 0.6762408 & 0.6762408 & 0.3067719 & 0.3067719\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_2 & 1 & 1 & 1 & 16.103743 & 0.4565219 & 0.4565219 & 0.1689964 & 0.1689964\\
+\hline
+sas\_2 & \textasciitilde{}\textasciitilde{} & sas\_5 & 1 & 1 & 1 & 14.199452 & 0.4501605 & 0.4501605 & 0.2466491 & 0.2466491\\
+\hline
+sas\_3 & \textasciitilde{}\textasciitilde{} & sas\_4 & 1 & 1 & 1 & 13.634069 & 0.6540148 & 0.6540148 & 0.6296118 & 0.6296118\\
+\hline
+sas\_2 & \textasciitilde{}\textasciitilde{} & sas\_5 & 2 & 2 & 1 & 6.412814 & 0.3190157 & 0.3190157 & 0.2720027 & 0.2720027\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_4 & 1 & 1 & 1 & 5.983159 & -0.3120160 & -0.3120160 & -0.1807117 & -0.1807117\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_6 & 2 & 2 & 1 & 5.121449 & 0.2657733 & 0.2657733 & 0.2028823 & 0.2028823\\
+\hline
+sas\_2 & \textasciitilde{}\textasciitilde{} & sas\_3 & 1 & 1 & 1 & 5.095619 & -0.2950612 & -0.2950612 & -0.1815531 & -0.1815531\\
+\hline
+sas\_1 & \textasciitilde{}\textasciitilde{} & sas\_3 & 1 & 1 & 1 & 3.595229 & -0.2499242 & -0.2499242 & -0.1422248 & -0.1422248\\
+\hline
+sas\_3 & \textasciitilde{}\textasciitilde{} & sas\_5 & 1 & 1 & 1 & 3.542862 & -0.2954815 & -0.2954815 & -0.2488821 & -0.2488821\\
+\hline
+\end{tabular}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{reliability-and-validity}{%
+\chapter{Reliability and Validity}\label{reliability-and-validity}}
+
+McDonald's omega \(\omega\) and Cronbach's \(\alpha\) were used to
+estimate internal consistency. The first measure has advantages over
+Cronbach's \(\alpha\), as it does not assume tau equivalence (i.e.,
+loadings are not assumed equal) or a perfect fit in CFA (Kelley \&
+Pornprasertmanit, 2016). Each index was calculated as the point estimate
+and the bias-corrected and accelerated bootstrap confidence interval
+(1000 bootstrap samples).
+
+\hypertarget{internal-consistency}{%
+\section{Internal consistency}\label{internal-consistency}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha }\OtherTok{\textless{}{-}}\NormalTok{ MBESS}\SpecialCharTok{::}\FunctionTok{ci.reliability}\NormalTok{(items[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], }\AttributeTok{type =} \StringTok{"alpha"}\NormalTok{, }\AttributeTok{interval.type =} \StringTok{"bca"}\NormalTok{)}
+
+\NormalTok{omega }\OtherTok{\textless{}{-}}\NormalTok{ MBESS}\SpecialCharTok{::}\FunctionTok{ci.reliability}\NormalTok{(items[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], }\AttributeTok{type=}\StringTok{"categorical"}\NormalTok{, }\AttributeTok{interval.type =} \StringTok{"perc"}\NormalTok{, }\AttributeTok{B =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The reliability analyses indicated an \(\alpha\) = .887 {[}.877, .896{]}
+and \(\omega\) = .913 {[}.906, .921{]}.
+
+\hypertarget{convergent-validity}{%
+\section{Convergent validity}\label{convergent-validity}}
+
+To assess convergent validity, we estimated a structural equation model
+where the SAS, insomnia severity, SPAQ's factors of Willingness and
+Active Engagement, and the HADS subscales of depression and anxiety were
+allowed to correlate. We expect these associations with insomnia,
+anxiety and depression to be positive and strong, and negative and
+strong with Willingness and Active Engagement (higher scores mean lower
+acceptance).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modconv }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}}
+
+\StringTok{sas =\textasciitilde{} sas\_1 + sas\_2 + sas\_3 + sas\_4 + sas\_5 + sas\_6}
+
+\StringTok{isi =\textasciitilde{} isi\_1a + isi\_1b + isi\_1c + isi\_2 + isi\_3 + isi\_4 + isi\_5}
+
+\StringTok{dep =\textasciitilde{} hads\_2 + hads\_4 + hads\_6 + hads\_8 + hads\_10 + hads\_12 + hads\_14}
+
+\StringTok{anx =\textasciitilde{} hads\_1 + hads\_3 + hads\_5 + hads\_7 + hads\_9 + hads\_11 + hads\_13}
+
+\StringTok{spaq\_ae =\textasciitilde{} spaq\_1 + spaq\_2 + spaq\_3 + spaq\_4 }
+\StringTok{spaq\_wl =\textasciitilde{} spaq\_5 + spaq\_6 + spaq\_7 + spaq\_8 }
+
+\StringTok{\textquotesingle{}}
+
+\NormalTok{fitconv }\OtherTok{\textless{}{-}}\NormalTok{ lavaan}\SpecialCharTok{::}\FunctionTok{sem}\NormalTok{(}\AttributeTok{model =}\NormalTok{ modconv,}
+                        \AttributeTok{std.lv =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{estimator =} \StringTok{\textquotesingle{}DWLS\textquotesingle{}}\NormalTok{, }\AttributeTok{data =}\NormalTok{ mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covmat }\OtherTok{\textless{}{-}} \FunctionTok{cov2cor}\NormalTok{(}\FunctionTok{lavInspect}\NormalTok{(fitconv, }\StringTok{"cov.lv"}\NormalTok{))}
+\NormalTok{covmat[}\FunctionTok{upper.tri}\NormalTok{(covmat, }\AttributeTok{diag =} \ConstantTok{FALSE}\NormalTok{)] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{covmat\_t }\OtherTok{\textless{}{-}}\NormalTok{ corrr}\SpecialCharTok{::}\FunctionTok{fashion}\NormalTok{(covmat, }\AttributeTok{decimals =} \DecValTok{3}\NormalTok{)}
+
+\NormalTok{covmat\_t2 }\OtherTok{\textless{}{-}}\NormalTok{ covmat\_t[,}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{5}\SpecialCharTok{:}\DecValTok{7}\NormalTok{)]}
+
+\FunctionTok{rownames}\NormalTok{(covmat\_t) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"1. SAS"}\NormalTok{, }\StringTok{"2. Insomnia Severity"}\NormalTok{, }\StringTok{"3. Depression"}\NormalTok{, }\StringTok{"4. Anxiety"}\NormalTok{, }\StringTok{"5. Active Engagement"}\NormalTok{, }\StringTok{"6. Willingness"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(covmat\_t) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"3"}\NormalTok{, }\StringTok{"4"}\NormalTok{, }\StringTok{"5"}\NormalTok{, }\StringTok{"6"}\NormalTok{)}
+
+\NormalTok{cor\_df }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{(covmat\_t, }\AttributeTok{rownames=}\StringTok{"Variable"}\NormalTok{)}
+
+\NormalTok{cor\_df }\SpecialCharTok{|\textgreater{}} 
+  \StringTok{\textasciigrave{}}\AttributeTok{colnames\textless{}{-}}\StringTok{\textasciigrave{}}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Variable"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"3"}\NormalTok{, }\StringTok{"4"}\NormalTok{, }\StringTok{"5"}\NormalTok{, }\StringTok{"6"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{kbl}\NormalTok{(}\AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{escape =} \ConstantTok{FALSE}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Latent correlations."}\NormalTok{, }
+      \AttributeTok{align =} \StringTok{"lllllc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{Latent correlations.}
+\centering
+\begin{tabular}[t]{lllllcl}
+\toprule
+Variable & 1 & 2 & 3 & 4 & 5 & 6\\
+\midrule
+1. SAS & 1.000 &  &  &  &  & \\
+2. Insomnia Severity & .869 & 1.000 &  &  &  & \\
+3. Depression & .626 & .663 & 1.000 &  &  & \\
+4. Anxiety & .713 & .720 & .814 & 1.000 &  & \\
+5. Active Engagement & -.210 & -.159 & -.446 & -.319 & 1.000 & \\
+\addlinespace
+6. Willingness & -.721 & -.743 & -.453 & -.514 & -.086 & 1.000\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{summary}{%
+\chapter{Summary}\label{summary}}
+
+In summary, this analyses indicated that the Sleep Acceptance Scale has
+
+\bookmarksetup{startatroot}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\markboth{References}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-americanpsychiatricassociation2013}{}}%
+American Psychiatric Association (Ed.). (2013). \emph{Diagnostic and
+statistical manual of mental disorders: {DSM}-5} (5th ed). {American
+Psychiatric Association}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bai2020}{}}%
+Bai, Z., Luo, S., Zhang, L., Wu, S., \& Chi, I. (2020). Acceptance and
+{Commitment Therapy} ({ACT}) to reduce depression: {A} systematic review
+and meta-analysis. \emph{Journal of Affective Disorders}, \emph{260},
+728--737. \url{https://doi.org/10.1016/j.jad.2019.09.040}
+
+\leavevmode\vadjust pre{\hypertarget{ref-bastien2001}{}}%
+Bastien, C. H., Vallières, A., \& Morin, C. M. (2001). Validation of the
+{Insomnia Severity Index} as an outcome measure for insomnia research.
+\emph{Sleep Medicine}, \emph{2}(4), 297--307.
+\url{https://doi.org/10.1016/s1389-9457(00)00065-4}
+
+\leavevmode\vadjust pre{\hypertarget{ref-bluett2014}{}}%
+Bluett, E. J., Homan, K. J., Morrison, K. L., Levin, M. E., \& Twohig,
+M. P. (2014). Acceptance and commitment therapy for anxiety and {OCD}
+spectrum disorders: {An} empirical review. \emph{Journal of Anxiety
+Disorders}, \emph{28}(6), 612--624.
+\url{https://doi.org/10.1016/j.janxdis.2014.06.008}
+
+\leavevmode\vadjust pre{\hypertarget{ref-bothelius2015}{}}%
+Bothelius, K., Jernelöv, S., Fredrikson, M., McCracken, L. M., \& Kaldo,
+V. (2015). Measuring {Acceptance} of {Sleep Difficulties}: {The
+Development} of the {Sleep Problem Acceptance Questionnaire}.
+\emph{Sleep}, \emph{38}(11), 1815--1822.
+\url{https://doi.org/10.5665/sleep.5170}
+
+\leavevmode\vadjust pre{\hypertarget{ref-christensen2023}{}}%
+Christensen, A. P., Garrido, L. E., \& Golino, H. (2023). Unique
+{Variable Analysis}: {A Network Psychometrics Method} to {Detect Local
+Dependence}. \emph{Multivariate Behavioral Research}, \emph{0}(0),
+1--18. \url{https://doi.org/10.1080/00273171.2023.2194606}
+
+\leavevmode\vadjust pre{\hypertarget{ref-espie2006}{}}%
+Espie, C. A., Broomfield, N. M., MacMahon, K. M. A., Macphee, L. M., \&
+Taylor, L. M. (2006). The attention-intention-effort pathway in the
+development of psychophysiologic insomnia: A theoretical review.
+\emph{Sleep Medicine Reviews}, \emph{10}(4), 215--245.
+\url{https://doi.org/10.1016/j.smrv.2006.03.002}
+
+\leavevmode\vadjust pre{\hypertarget{ref-flake2021}{}}%
+Flake, J. K., \& Luong, R. (2021). \emph{Measurement {Invariance Testing
+Using Confirmatory Factor Analysis} and {Alignment Optimization}: {A
+Tutorial} for {Transparent Analysis Planning} and {Reporting}}.
+\url{https://doi.org/10.31234/osf.io/qr32u}
+
+\leavevmode\vadjust pre{\hypertarget{ref-golino2017}{}}%
+Golino, H. F., \& Epskamp, S. (2017). Exploratory graph analysis: {A}
+new approach for estimating the number of dimensions in psychological
+research. \emph{PLOS ONE}, \emph{12}(6), e0174035.
+\url{https://doi.org/gbjzzb}
+
+\leavevmode\vadjust pre{\hypertarget{ref-golino2020}{}}%
+Golino, H., Shi, D., Christensen, A. P., Garrido, L. E., Nieto, M. D.,
+Sadana, R., Thiyagarajan, J. A., \& Martinez-Molina, A. (2020).
+Investigating the performance of exploratory graph analysis and
+traditional techniques to identify the number of latent factors: A
+simulation and tutorial. \emph{Psychological Methods}, \emph{25}(3),
+292. \url{https://doi.org/10.1037/met0000255}
+
+\leavevmode\vadjust pre{\hypertarget{ref-harvey2002}{}}%
+Harvey, A. G. (2002). A cognitive model of insomnia. \emph{Behaviour
+Research and Therapy}, \emph{40}(8), 869--893.
+\url{https://doi.org/fwxq35}
+
+\leavevmode\vadjust pre{\hypertarget{ref-kato2016}{}}%
+Kato, T. (2016). Impact of psychological inflexibility on depressive
+symptoms and sleep difficulty in a {Japanese} sample.
+\emph{SpringerPlus}, \emph{5}(1), 712. \url{https://doi.org/gmdm5s}
+
+\leavevmode\vadjust pre{\hypertarget{ref-kelley2016}{}}%
+Kelley, K., \& Pornprasertmanit, S. (2016). Confidence intervals for
+population reliability coefficients: {Evaluation} of methods,
+recommendations, and software for composite measures.
+\emph{Psychological Methods}, \emph{21}, 69--92.
+\url{https://doi.org/10.1037/a0040086}
+
+\leavevmode\vadjust pre{\hypertarget{ref-lundh2005}{}}%
+Lundh, L.-G. (2005). The {Role} of {Acceptance} and {Mindfulness} in the
+{Treatment} of {Insomnia}. \emph{Journal of Cognitive Psychotherapy},
+\emph{19}(1), 29--39. \url{https://doi.org/10.1891/jcop.19.1.29.66331}
+
+\leavevmode\vadjust pre{\hypertarget{ref-morin2011a}{}}%
+Morin, C. M., Belleville, G., Bélanger, L., \& Ivers, H. (2011).
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3079939}{The
+{Insomnia Severity Index}: {Psychometric Indicators} to {Detect Insomnia
+Cases} and {Evaluate Treatment Response}}. \emph{Sleep}, \emph{34}(5),
+601--608.
+
+\leavevmode\vadjust pre{\hypertarget{ref-morin1993}{}}%
+Morin, C. M., Stone, J., Trinkle, D., Mercer, J., \& Remsberg, S.
+(1993). Dysfunctional beliefs and attitudes about sleep among older
+adults with and without insomnia complaints. \emph{Psychology and
+Aging}, \emph{8}(3), 463--467. \url{https://doi.org/frwwvp}
+
+\leavevmode\vadjust pre{\hypertarget{ref-ong2012}{}}%
+Ong, J. C., Ulmer, C. S., \& Manber, R. (2012). Improving sleep with
+mindfulness and acceptance: {A} metacognitive model of insomnia.
+\emph{Behaviour Research and Therapy}, \emph{50}(11), 651--660.
+\url{https://doi.org/f4fczt}
+
+\leavevmode\vadjust pre{\hypertarget{ref-perlis1997}{}}%
+Perlis, M. L., Giles, D. E., Mendelson, W. B., Bootzin, R. R., \& Wyatt,
+J. K. (1997). Psychophysiological insomnia: The behavioural model and a
+neurocognitive perspective. \emph{Journal of Sleep Research},
+\emph{6}(3), 179--188. \url{https://doi.org/fcrnvj}
+
+\leavevmode\vadjust pre{\hypertarget{ref-ruiz2010}{}}%
+Ruiz, F. J. (2010). A review of {Acceptance} and {Commitment Therapy}
+({ACT}) empirical evidence: {Correlational}, experimental
+psychopathology, component and outcome studies. \emph{International
+Journal of Psychology \& Psychological Therapy}, \emph{10}, 125--162.
+
+\leavevmode\vadjust pre{\hypertarget{ref-twohig2017}{}}%
+Twohig, M. P., \& Levin, M. E. (2017). Acceptance and {Commitment
+Therapy} as a {Treatment} for {Anxiety} and {Depression}: {A Review}.
+\emph{Psychiatric Clinics}, \emph{40}(4), 751--770.
+\url{https://doi.org/10.1016/j.psc.2017.08.009}
+
+\leavevmode\vadjust pre{\hypertarget{ref-zigmond1983hospital}{}}%
+Zigmond, A. S., \& Snaith, R. P. (1983). The hospital anxiety and
+depression scale. \emph{Acta Psychiatrica Scandinavica}, \emph{67}(6),
+361--370.
+
+\end{CSLReferences}
+
+
+
+\end{document}
