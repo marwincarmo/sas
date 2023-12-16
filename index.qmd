@@ -25,10 +25,8 @@ The project was also made as a [Github repository](https://github.com/marwincarm
 
 ## Reflection
 
-Reflect on what you learned in this project / class. What course concepts did you draw on? What barriers did you have to overcome to complete the project? If you were to start over, would you do it the same way again or take a different strategy? These are just some examples of questions to consider in reflecting on your project. There is no minimum of maximum length, but my guess is 2-3 paragraphs.
+Several layers of concepts taught in the course were used to create this project. Because the ultimate goal was to create a reproducible analysis script, it was necessary that it was constructed in a project based approach, organizing the files in a hierarchical folder structure. In order to have the data set ready for the analyses, it had to undergo some steps such as the transformation of date columns, creation of new variables based on existing ones, re-coding, treatment of missing values, pivoting, string manipulation and others. Functions for grouping, selecting and filtering were also used frequently throughout the project. 
 
+Although the end product have accomplished its goal, this project has limitations that were not addressed during its development and room for improvement in the future. For instance, it was not pre-registered. Although the current analysis plan has changed in some aspects compared to the initial proposition, having these differences documented would facilitate the inspection of those changes by reviewers and interested readers. Another fundamental limitation is the lack of a data dictionary and a codebook. These files are important to ease the re-use of the data and should be developed in a near future. This project also lacks comments on the code chunks. Adding comments will help future re-analyses and is instructive for people interested in using pieces of the code in their own work.
 
-
-One of the main challenges was creating a report file that could be seamlessly executed and understandable by machines and humans because of the multiple analyses involved. However with the use of Quarto, 
-
-To start, it was necessary to employ a project based approach, where the files were organized in a hierarchical folder structre. To 
+Despite my previous familiarity with R, tidyverse functions, and reproducible documents, this was the first project done aiming to adopt a totally open and reproducible framework.
