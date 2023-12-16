@@ -22,10 +22,12 @@ Thanks to a suggestion from Dr. Emorie, this project was redesigned to the forma
 
 To create this product first I created a new project in RStudio using the Quarto book template. Then different `.qmd` files were created for each step of the analysis and saved in the general folder of the project. Additionally, a sub folder for the data was created, containing the raw data, the cleaned data from step 1, and intermediate outputs saved to optimize the rendering of the document.
 
-The project was also made as a [Github repository](https://github.com/marwincarmo/sas), available publicly. Once finished, the book was hosted as a website on Github Pages, available at 
+The project was also made as a [Github repository](https://github.com/marwincarmo/sas), available publicly. Once finished, the book was hosted as a website on Github Pages, available at <https://marwincarmo.github.io/sas/>
 
 ## Reflection
 
 Reflect on what you learned in this project / class. What course concepts did you draw on? What barriers did you have to overcome to complete the project? If you were to start over, would you do it the same way again or take a different strategy? These are just some examples of questions to consider in reflecting on your project. There is no minimum of maximum length, but my guess is 2-3 paragraphs.
 
-This project involves multiple analyses that use different packages and create various objects in the work environment. The main challenge is creating a report file that can be seamlessly executed and easily understandable by machines and humans.
+One of the main challenges was creating a report file that could be seamlessly executed and understandable by machines and humans because of the multiple analyses involved. However with the use of Quarto, 
+
+To start, it was necessary to employ a project based approach, where the files were organized in a hierarchical folder structre. To 

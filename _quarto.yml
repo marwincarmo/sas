@@ -16,7 +16,6 @@ book:
     - '03_dimensionality-analysis.qmd'
     - '04_invariance.qmd'
     - '05_reliability.qmd'
-    - summary.qmd
     - references.qmd
   page-navigation: true
 bibliography: bibliography/references.bib
