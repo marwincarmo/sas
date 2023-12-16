@@ -1,0 +1,75 @@
+---
+execute:
+  warning: false
+---
+
+```{r include=FALSE}
+library(weights)
+library(lavaan)
+library(kableExtra)
+
+mydata <- readr::read_csv("data/clean_data/clean_data.csv") |> 
+  dplyr::filter(redcap_event_name == "elegibilidade_arm_1",
+                !dplyr::if_all(dplyr::starts_with("sas_"), ~ is.na(.))) |> 
+  dplyr::mutate(across(spaq_5:spaq_8, ~ 6 - .x))
+```
+
+
+
+# Reliability and Validity
+
+## Internal consistency
+
+```{r eval=FALSE}
+alpha <- MBESS::ci.reliability(items[,-1], type = "alpha", interval.type = "bca")
+
+omega <- MBESS::ci.reliability(items[,-1], type="categorical", interval.type = "perc", B = 1000)
+```
+
+```{r, include=FALSE}
+omega <- readRDS("data/output/omega.rds")
+alpha <- readRDS("data/output/alpha.rds")
+```
+
+The reliability analyses indicated an $\alpha$ = `r paste0(rd(alpha$est, 3), " [", rd(alpha$ci.lower, 3), ", ", rd(alpha$ci.upper, 3), "]")` and $\omega$ = `r paste0(rd(omega$est, 3), " [", rd(omega$ci.lower, 3), ", ", rd(omega$ci.upper, 3), "]")`.
+
+## Convergent validity
+
+```{r mod-conv-validity}
+modconv <- '
+
+sas =~ sas_1 + sas_2 + sas_3 + sas_4 + sas_5 + sas_6
+
+isi =~ isi_1a + isi_1b + isi_1c + isi_2 + isi_3 + isi_4 + isi_5
+
+dep =~ hads_2 + hads_4 + hads_6 + hads_8 + hads_10 + hads_12 + hads_14
+
+anx =~ hads_1 + hads_3 + hads_5 + hads_7 + hads_9 + hads_11 + hads_13
+
+spaq_ae =~ spaq_1 + spaq_2 + spaq_3 + spaq_4 
+spaq_wl =~ spaq_5 + spaq_6 + spaq_7 + spaq_8 
+
+'
+
+fitconv <- lavaan::sem(model = modconv,
+                        std.lv = TRUE, estimator = 'DWLS', data = mydata)
+```
+
+```{r correlation-table}
+covmat <- cov2cor(lavInspect(fitconv, "cov.lv"))
+covmat[upper.tri(covmat, diag = FALSE)] <- NA
+covmat_t <- corrr::fashion(covmat, decimals = 3)
+
+covmat_t2 <- covmat_t[,-c(5:7)]
+
+rownames(covmat_t) <- c("1. SAS", "2. Insomnia Severity", "3. Depression", "4. Anxiety", "5. Active Engagement", "6. Willingness")
+colnames(covmat_t) <- c("1", "2", "3", "4", "5", "6")
+
+cor_df <- tibble::as_tibble(covmat_t, rownames="Variable")
+
+cor_df |> 
+  `colnames<-`(c("Variable", "1", "2", "3", "4", "5", "6")) |> 
+  kbl(booktabs = TRUE, escape = FALSE,
+      caption = "Latent correlations.", 
+      align = "lllllc")
+```

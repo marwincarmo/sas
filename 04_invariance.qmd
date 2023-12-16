@@ -1,0 +1,290 @@
+---
+execute:
+  warning: false
+---
+
+# Invariance
+
+```{r}
+library(semTools)
+library(kableExtra)
+```
+
+
+```{r, include=FALSE}
+
+mydata <- readr::read_csv("data/clean_data/clean_data.csv")
+
+arm1 <- mydata |> 
+  dplyr::filter(redcap_event_name == "elegibilidade_arm_1",
+                !dplyr::if_all(dplyr::starts_with("sas_"), ~ is.na(.))) |> 
+  dplyr::mutate(group = dplyr::case_when(
+    dsm_1 == 0 &
+    dsm_2 == 0 &
+    dsm_3 == 0 &
+    dsm_4 == 0 &
+    dsm_5 == 0 &
+    isi_total < 8 ~ "good_sleepers",
+    TRUE ~ "bad_sleepers")) |> 
+  dplyr::select(record_id, group, paste0("sas_", 1:6))
+
+items <- arm1[,2:8]
+```
+
+
+## Longitudinal invariance
+
+```{r longitudinal-data, echo=FALSE}
+data_longitudinal <- mydata |> 
+  dplyr::select(record_id, paste0("sas_", 1:6), redcap_event_name) |> 
+  dplyr::filter(!dplyr::if_all(dplyr::starts_with("sas_"), ~ is.na(.))) |> 
+  tidyr::pivot_longer(cols = sas_1:sas_6, names_to = "item", values_to = "score") |> 
+  dplyr::mutate(item = ifelse(redcap_event_name == "elegibilidade_arm_1", paste0(item, ".1"), paste0(item, ".2"))) |> 
+  dplyr::select(-redcap_event_name) |> 
+  tidyr::pivot_wider(names_from = item, values_from = score)
+```
+
+### Configural invariance
+
+```{r configural-model}
+
+long_configural_model <- '
+
+SAS.1 =~ sas_1.1 + sas_2.1 + sas_3.1 + sas_4.1 + sas_5.1 + sas_6.1
+
+SAS.2 =~ sas_1.2 + sas_2.2 + sas_3.2 + sas_4.2 + sas_5.2 + sas_6.2
+
+'
+
+longFacNames <- list (SAS = c("SAS.1", "SAS.2"))
+
+syntax_long_config <- measEq.syntax(configural.model = long_configural_model,
+                               data = data_longitudinal,
+                               parameterization = "theta",
+                               ID.fac = "std.lv", ID.cat = "Wu.Estabrook.2016",
+                               longFacNames = longFacNames)
+
+mod_long_config <- as.character(syntax_long_config)
+
+fit_long_config <- cfa(mod_long_config, 
+                      data = data_longitudinal, 
+                      estimator = "DWLS", 
+                      std.lv = TRUE)
+
+semTools::fitmeasures(fit_long_config, fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+```
+
+### Metric invariance
+
+```{r metric-invariance}
+syntax_long_metric <- measEq.syntax(configural.model = long_configural_model,
+                               data = data_longitudinal,
+                               parameterization = "theta",
+                               ID.fac = "std.lv", ID.cat = "Wu.Estabrook.2016",
+                               longFacNames = longFacNames,
+                               long.equal  = c("thresholds","loadings"))
+
+mod_long_metric <- as.character(syntax_long_metric)
+
+fit_long_metric <- cfa(mod_long_metric, data = data_longitudinal, estimator = "DWLS",
+                  parameterization = "theta", std.lv = TRUE)
+
+conf_met_long <- compareFit(fit_long_config, fit_long_metric)
+summary(conf_met_long)
+
+lavTestLRT(fit_long_config, fit_long_metric, method="satorra.bentler.2010") |> 
+  broom::tidy()
+```
+
+### Scalar invariance
+
+```{r scalar-invariance}
+syntax_long_scalar <- measEq.syntax(configural.model = long_configural_model,
+                               data = data_longitudinal,
+                               parameterization = "theta",
+                               ID.fac = "std.lv", ID.cat = "Wu.Estabrook.2016",
+                               longFacNames = longFacNames,
+                               long.equal  = c("thresholds","loadings",
+                                               "intercepts"))
+mod_long_scalar <- as.character(syntax_long_scalar)
+fit_long_scalar <- cfa(mod_long_scalar, data = data_longitudinal, estimator = "DWLS",
+                  parameterization = "theta", std.lv = TRUE)
+
+anova(fit_long_config, fit_long_metric, fit_long_scalar, method = "satorra.bentler.2010") |> 
+  broom::tidy()
+```
+
+### Strict invariance
+
+```{r}
+syntax_long_strict <- measEq.syntax(configural.model = long_configural_model,
+                               data = data_longitudinal,
+                               parameterization = "theta",
+                               ID.fac = "std.lv", ID.cat = "Wu.Estabrook.2016",
+                               longFacNames = longFacNames,
+                               long.equal  = c("thresholds","loadings",
+                                               "intercepts", "residuals"))
+mod_long_strict <- as.character(syntax_long_strict)
+fit_long_strict <- cfa(mod_long_strict, data = data_longitudinal, estimator = "DWLS",
+                  parameterization = "theta", std.lv = TRUE)
+
+anova(fit_long_config, fit_long_metric, fit_long_scalar, fit_long_strict, method = "satorra.bentler.2010")|> 
+  broom::tidy()
+```
+
+### Longitudinal fit differences
+
+```{r longitudinal-fit-differences}
+inv_long <- anova(fit_long_config, fit_long_metric, fit_long_scalar, fit_long_strict,
+                  method = "satorra.bentler.2010") |> 
+  tibble::as.tibble()
+
+fit_stats_strict <- fitmeasures(fit_long_strict, 
+                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+
+fit_stats_scalar <- fitmeasures(fit_long_scalar, 
+                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+
+fit_stats_metric <- fitmeasures(fit_long_metric, 
+                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+
+fit_stats_configural <- fitmeasures(fit_long_config, 
+                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+
+long_fit_diffs <- tibble::enframe(c(
+        fit_stats_configural - fit_stats_metric,
+        fit_stats_metric - fit_stats_scalar,
+        fit_stats_scalar - fit_stats_strict)) |> 
+  dplyr::mutate(model = rep(c("metric", "scalar", "strict"), each=5),
+                .before = name) |> 
+  tidyr::pivot_wider(names_from = "name", values_from = "value") 
+
+long_fit_diffs |> 
+  kableExtra::kbl()
+```
+
+## Invariance across groups (good x bad sleepers)
+
+```{r}
+model_sas <- "
+SAS =~ sas_1 + sas_2 + sas_3 + sas_4 + sas_5 + sas_6
+"
+```
+
+### Configural invariance
+
+```{r configural-model-group}
+syntax.config.group <- measEq.syntax(configural.model = model_sas,
+                               data = items,
+                               group = "group",
+                               parameterization = "theta",
+                               ID.fac = "std.lv", ID.cat = "Wu.Estabrook.2016")
+mod.config.group <- as.character(syntax.config.group)
+
+configural.fit.group <- cfa(mod.config.group, 
+                           group = "group",
+                           data = items,
+                           estimator = "DWLS",
+                           std.lv = TRUE)
+```
+
+### Metric invariance
+
+```{r metric-invariance-group}
+syntax.metric.group <- measEq.syntax(configural.model = model_sas,
+                               data = items,
+                               group = "group",
+                               parameterization = "theta",
+                               ID.fac = "std.lv", ID.cat = "Wu.Estabrook.2016",
+                               group.equal  = c("loadings"))
+
+mod.metric.group <- as.character(syntax.metric.group)
+
+fit.metric.group <- cfa(mod.metric.group, group = "group",
+                           data = items,
+                           estimator = "DWLS",
+                           std.lv = TRUE)
+
+conf.met <- compareFit(configural.fit.group, fit.metric.group, argsLRT = list(method = "satorra.bentler.2010"))
+
+
+lavTestLRT(configural.fit.group, fit.metric.group, method="satorra.bentler.2010") |> 
+  broom::tidy() |> 
+  kbl()
+```
+
+```{r inspecting-metric-inv}
+
+lavaan::modindices(fit.metric.group) |> 
+  dplyr::arrange(-mi) |> 
+  head(10) |> 
+  kbl()
+```
+```{r group-fit-differences}
+inv_group <- anova(
+  configural.fit.group, fit.metric.group, method="satorra.bentler.2010") |> 
+  tibble::as.tibble()
+
+fit_stats_metric_group <- fitmeasures(fit.metric.group, 
+                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+
+fit_stats_configural_group <- fitmeasures(configural.fit.group, 
+                                fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi", "srmr_bentler"))
+
+group_fitdiffs <- tibble::enframe(c(
+        fit_stats_configural_group - fit_stats_metric_group)) |> 
+  dplyr::mutate(model = c("metric"),
+                .before = name) |> 
+  tidyr::pivot_wider(names_from = "name", values_from = "value")
+```
+
+```{r fitdiffs_df, eval=FALSE}
+fitdiffs_df <- inv_long[, 5:7] |> 
+  dplyr::mutate(
+    model = c("configural", "metric", "scalar", "strict"),
+    .before = dplyr::everything()) |> 
+  dplyr::left_join(long_fit_diffs, by = "model") |> 
+  rbind(inv_group[, 5:7] |> 
+          dplyr::mutate(
+    model = c("configural", "metric"),
+    .before = dplyr::everything()) |> 
+          dplyr::left_join(group_fitdiffs, by = "model"))
+
+fitdiffs_df[1, -1] <- t(as.data.frame(
+  fitmeasures(
+    configural.fit, fit.measures = c(
+      "chisq", "df", "pvalue",
+      "rmsea", "cfi"))
+))
+
+fitdiffs_df[5, -1] <- t(as.data.frame(
+  fitmeasures(
+    configural.fit.group, fit.measures = c(
+      "chisq", "df", "pvalue",
+      "rmsea", "cfi"))
+))
+
+fitdiffs_df |> 
+  dplyr::mutate(
+    `Pr(>Chisq)` = ifelse(`Pr(>Chisq)` < .001, "<.001", 
+                          weights::rd(`Pr(>Chisq)`, 2)),
+    dplyr::across(c(aic, bic), ~round(.x, 0)),
+    dplyr::across(c(rmsea.robust, cfi.robust),
+                  ~weights::rd(.x, 4)),
+    `Chisq diff` = round(`Chisq diff`, 2),
+    model = stringr::str_to_title(model)
+    ) |> 
+  `colnames<-`(c("Model", "$\\Delta\\chi^2$", 
+                 "$\\Delta$df", "$\\it{p}$-value", 
+                 "$\\Delta$RMSEA", "$\\Delta$CFI",
+                 "$\\Delta$AIC", "$\\Delta$BIC")) |> 
+  kbl(booktabs = TRUE, 
+      caption = " Model fit differences for CFA measurement invariance tests.", 
+      escape = FALSE) |> 
+  pack_rows("Longitudinal invariance", 1, 4) |>
+  pack_rows("Group invariance", 5, 6) |> 
+  footnote(general = "Differences to each preceding constraint level.",
+           footnote_as_chunk = TRUE,
+           general_title = "Note. ") |> 
+  kable_paper()
+```

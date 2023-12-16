@@ -1,0 +1,124 @@
+---
+execute:
+  warning: false
+---
+
+# Data screening
+
+## Loading the required packages and data
+
+```{r}
+library(kableExtra)
+library(dplyr)
+library(ggplot2)
+library(modelsummary)
+library(faoutlier)
+library(lavaan)
+library(influence.SEM)
+library(corrplot)
+```
+
+```{r}
+mydata <- readr::read_csv("data/clean_data/clean_data.csv")
+
+arm1 <- mydata |> 
+  dplyr::filter(redcap_event_name == "elegibilidade_arm_1",
+                !dplyr::if_all(dplyr::starts_with("sas_"), ~ is.na(.))) |> 
+  dplyr::select(record_id, paste0("sas_", 1:6))
+```
+
+Sample size: `r nrow(arm1)`.
+
+## Descriptives
+
+Response frequencies and item statistics are examined to assess whether items show sufficient variation to be able to differentiate respondents on the construct(s) investigated, and if there are any out-of-range values (data entry errors). Differences in response frequencies also provide a first hint regarding variation in item intensity/difficulty (and help interpret any later differences between IRT and FA results). Associations between items are examined to identify any negative correlations (and reverse code such items for next analyses). Plotting of multivariate outliers helps identify any respondents with idiosyncratic response patterns, which can be further investigated and either excluded (e.g. if errors are identified in the data collection/entry) or kept within the sample (if there are no valid reasons for exclusion).
+
+### Response frequecy
+
+```{r item-summary-table-a, echo=FALSE}
+modelsummary::datasummary_skim(arm1[,-1], output = 'kableExtra')
+```
+
+```{r item-summary-table}
+sas_transposed <- arm1[,-1] |> 
+  tidyr::pivot_longer(cols = dplyr::everything(), names_to = "item", values_to = "score") |> 
+  dplyr::mutate(score = factor(score, levels=1:7),
+                item = factor(item, levels=paste0("sas_", 1:6)))
+
+datasummary(item ~ score * (N + Heading("%")* Percent("row")), data=sas_transposed)
+```
+
+```{r item-summary-plot, fig.width=8, fig.height=4, dpi=300}
+sas_transposed |> 
+  dplyr::mutate(item = paste0("SAS", stringr::str_replace(item, "sas_", ""))) |> 
+  dplyr::filter(!is.na(score)) |> 
+  dplyr::mutate(score = factor(score, levels=7:1),
+                item = factor(item, levels=paste0("SAS", 1:6))) |> 
+  ggplot(aes(x = item, fill = score)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d(option = "A", begin = .4, end = .9) +
+  coord_flip() +
+  theme_minimal(16) +
+  labs(fill="Score", y = "Frequency", x = "")
+```
+
+### Zero-order correlation
+
+```{r correlation-table}
+modelsummary::datasummary_correlation(arm1[,-1])
+```
+
+
+```{r correlation-plot, fig.width=6, fig.height=4, dpi=300}
+
+sas_cor <- cor(arm1[,-1], use="pairwise.complete.obs", method = "spearman")
+colnames(sas_cor) <- rownames(sas_cor) <-  paste0("SAS", 1:6)
+corrplot(sas_cor, method = "shade", shade.col = NA, tl.col = "black", tl.srt = 45, type="full", 
+          addCoef.col = "black", cl.pos = "n", order = "original", tl.cex = .8, number.cex=.8)
+```
+
+### Inspecting outliers and leverage
+
+```{r mahal-dist, fig.width=6, fig.height=4, dpi=300}
+d2mydata <- psych::outlier(arm1[,-1], cex=.6, bad=3, ylim=c(0,130))
+```
+
+
+There were `r sum((1-pchisq(d2mydata, ncol(arm1)))<.001)` respondents with D^2^ values with probability values <.001 (considering a chi-squared distribution with df = `r ncol(arm1)`). The maximum D^2^ value is `r round(max(d2mydata), 2)`.
+
+```{r outliers-md}
+
+outliers_md <- arm1[((1-pchisq(d2mydata, ncol(arm1)))<.001), ]
+
+```
+
+```{r md-values}
+
+dfd2 <- tibble::enframe(d2mydata) |> 
+  dplyr::mutate(name = arm1$record_id)
+dplyr::arrange(dfd2, desc(value)) |> 
+  head(10) |> 
+  kbl()
+```
+
+```{r md-distribution, fig.width=4, fig.height=6, dpi=300}
+dfd2 |> 
+  dplyr::mutate(x = "MD") |> 
+  ggplot(aes(x=x, y=value))+
+    geom_violin(alpha = .6, trim = FALSE, draw_quantiles = c(.25, .50, .75))+
+    geom_boxplot(width = .2, alpha = .7, fatten = NULL)+
+    stat_summary(fun = "mean", geom = "point") +
+  theme_minimal(12) +
+  theme(axis.text.x=element_blank()) +
+  labs(x = NULL, y = "Observed MD values") +
+  geom_text(aes(label=ifelse(value>25,as.character(name),'')),hjust=-0.3,vjust=0)
+
+```
+
+### Outliers response pattern analysis
+
+```{r inspect-ouliers}
+outliers_sas <-  which((1-pchisq(d2mydata, ncol(arm1)))<.001)
+
+arm1[as.double(names(outliers_sas)), ]
+```

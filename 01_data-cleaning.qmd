@@ -1,0 +1,62 @@
+---
+execute:
+  warning: false
+---
+
+# Data cleaning
+
+## Loading the required packages
+
+```{r}
+library(dplyr)
+library(lubridate)
+```
+
+## Importing the raw data
+
+First we will import the raw data set downloaded from the REDCap repository where this project is stored. To be able to share this data, we removed sensitive information from participants such as name, telephone number, email address, and CPF (government id number).
+
+```{r}
+raw_data <- readr::read_csv("data/raw_data/TerapiaDeAceitaoECom_DATA_2023-08-16_1318.csv")
+head(raw_data)
+```
+
+## Data transformation and selection
+
+This dataset contains `r ncol(raw_data)` variables and a few of them are relevant to the analyses in this project. Therefore, first we will transform some of the variables of interest and then select those that we need. We want to have a clean dataset containing the columns of age, event, sex, race, marital status, education, work situation, location, sleep habits, insomnia severity index, anxiety, depression, dysfunctional beliefs and attitudes about sleep, sleep problem acceptance and sleep acceptance.
+
+Explicar os passos...
+
+```{r}
+clean_data <- raw_data |> 
+  dplyr::with_groups(record_id,
+                     tidyr::fill,
+                     c(idade, dsm_1:dsm_5), .direction = "down") |> 
+  dplyr::mutate(identificao_timestamp = dplyr::na_if(identificao_timestamp, "[not completed]"),
+                identificao_timestamp = lubridate::mdy_hm(identificao_timestamp),
+                data_nascimento = lubridate::mdy(data_nascimento),
+                idade_new = lubridate::time_length(difftime(identificao_timestamp, data_nascimento, unit="weeks"), "years"),
+                age = dplyr::coalesce(idade, idade_new)) |> 
+  dplyr::select(record_id, redcap_event_name, sexo, age, etnia, estado_civil, escolaridade, ocupacao,
+                dplyr::starts_with("dsm_"), dplyr::starts_with("igi_"), dplyr::starts_with("ehad_"),
+                dplyr::matches("aaq_[0-9]"), dplyr::matches("dbas_[0-9]+$"), dplyr::contains("spaq_"),
+                dplyr::starts_with("ebas_")) |> 
+  dplyr::filter(redcap_event_name %in% c("elegibilidade_arm_1", "reteste_arm_1"),
+                age >= 18 & age < 60,
+                !record_id %in% c(2562, 1766, 2972, 2681, 430, 2559, 3053, 540 , 522 , 3698)
+                )
+```
+
+## Translation of column names
+
+```{r}
+namesEN <- c("record_id", "redcap_event_name", "sex", "age", "race", "marital_status", "education", "work_status", paste0("dsm_", 1:5), "isi_1a", "isi_1b", "isi_1c", paste0("isi_", 2:5), "isi_total", paste0("hads_", 1:14), "hads_depression", "hads_anxiety", paste0("aaq_", 1:7), paste0("dbas16_", 1:16), "dbas10_04", "dbas10_10", paste0("spaq_", 1:8), paste0("sas_", 1:6))
+
+names(clean_data) <- namesEN
+```
+
+## Saving the dataset
+
+```{r}
+readr::write_csv(clean_data, "data/clean_data/clean_data.csv")
+```

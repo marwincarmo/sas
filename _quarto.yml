@@ -2,15 +2,21 @@ project:
   type: book
 
 book:
-  title: "sas"
-  author: "Norah Jones"
+  title: "Validation of the Sleep Acceptance Scale"
+  author: "Marwin Carmo"
+  
   date: "12/14/2023"
   chapters:
     - index.qmd
     - intro.qmd
+    - '01_data-cleaning.qmd'
+    - '02_data-screening.qmd'
+    - '03_dimensionality-analysis.qmd'
+    - '04_invariance.qmd'
+    - '05_reliability.qmd'
     - summary.qmd
     - references.qmd
-
+  page-navigation: true
 bibliography: references.bib
 
 format:
@@ -19,5 +25,5 @@ format:
   pdf:
     documentclass: scrreprt
 
-editor: visual
+editor: source
 

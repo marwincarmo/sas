@@ -1,0 +1,152 @@
+---
+execute:
+  warning: false
+---
+
+# Dimensionality Analyses
+
+```{r packages-nwk, echo=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(psychTools)
+library(EGAnet)
+library(qgraph)
+library(tidymodels)
+library(ggpubr)
+library(kableExtra)
+```
+
+
+```{r labels, include=FALSE}
+mydata <- readr::read_csv("data/clean_data/clean_data.csv")
+
+arm1 <- mydata |> 
+  dplyr::filter(redcap_event_name == "elegibilidade_arm_1",
+                !dplyr::if_all(dplyr::starts_with("sas_"), ~ is.na(.))) |> 
+  dplyr::mutate(group = dplyr::case_when(
+    dsm_1 == 0 &
+    dsm_2 == 0 &
+    dsm_3 == 0 &
+    dsm_4 == 0 &
+    dsm_5 == 0 &
+    isi_total < 8 ~ "good_sleepers",
+    TRUE ~ "bad_sleepers")) |> 
+  dplyr::select(record_id, group, paste0("sas_", 1:6))
+
+items_labels <- tibble::tribble(
+  ~items, ~description,
+  "sas_1" , "I try to control my sleep by forcing it to happen, or by being too rigid about my sleep schedule.",
+  "sas_2" , "I avoid making plans or doing things I enjoy or need to do because of my sleep.",
+  "sas_3" ,"The thought of going to sleep makes me uneasy.",
+  "sas_4" ,"I have negative feelings towards my sleep.",
+  "sas_5" ,"My worries, thoughts, and feelings about my sleep interfere with how I go about my daily life.",
+  "sas_6" ,"I am scared of not being able to fall asleep."
+)
+```
+
+```{r}
+items <- arm1[,2:8]
+```
+
+## Detecting redundancy with Unique Variable Analysis
+
+```{r redund-items}
+redund <- EGAnet::UVA(data=items[,2:7], method="wTO", type="threshold",  corr =  "spearman",
+                    reduce=FALSE, adhoc=FALSE, plot.redundancy=TRUE, reduce.method = "remove") 
+redund.items <- redund$redundancy$redundant
+```
+
+High redundancies were found between items `r names(redund.items[1])` ("`r items_labels[items_labels$items==names(redund.items[1]),2]`") and `r redund.items[[1]]` ("`r items_labels[items_labels$items==redund.items[[1]],2]`").
+
+# Initial Dimensionality Estimation
+
+## Model with redundancies
+
+```{r ega-with-redundancy}
+# EGA (with redundancy) 
+ega.wr.tmfg <- EGA(items[,2:7], algorithm = "walktrap", model = "TMFG",  corr =  "spearman",
+              plot.EGA = FALSE, uni.method = "LE") 
+
+ega.wr.glasso <- EGA(items[,2:7], algorithm = "walktrap", model = "glasso", corr =  "spearman",
+              plot.EGA = FALSE, uni.method = "LE",plot.args = list()) 
+
+
+comp.plots.wr <- EGAnet::compare.EGA.plots(
+  ega.wr.glasso, ega.wr.tmfg,
+  base.plot = 1,
+  labels = c("GLASSO", "TMFG"),
+  rows = 1, columns = 2
+)
+
+comp.plots.wr$comparison.plot
+
+```
+
+### Structural consistency
+
+```{r bootEGA-wr}
+
+boot.tmfg.wr <- bootEGA(items[,2:7], iter = 1000, model = "TMFG", type = "parametric", corr =  "spearman", algorithm = "walktrap", plot.typicalStructure = FALSE)
+
+boot.glasso.wr <- bootEGA(items[,2:7], iter = 1000, model = "glasso", type = "parametric", corr =  "spearman", plot.typicalStructure = FALSE)
+
+```
+
+```{r stability-descriptive}
+# Descriptive statistics 
+desc.stab.wr <- rbind(boot.tmfg.wr$summary.table, boot.glasso.wr$summary.table)
+row.names(desc.stab.wr) <- c("TMFG", "GLASSO")
+desc.stab.wr
+```
+
+```{r dimension-frequency}
+# Frequency of dimensions 
+
+dim.freq.wr <- rbind(boot.tmfg.wr$frequency, boot.glasso.wr$frequency)
+row.names(dim.freq.wr) <- c(rep("TMFG", nrow(boot.tmfg.wr$frequency)), 
+                            rep("GLASSO", nrow(boot.glasso.wr$frequency)))
+dim.freq.wr
+```
+
+```{r structural-consistency-wr}
+# structural consistency
+dim.stab.wr.tmfg <- dimensionStability(boot.tmfg.wr)
+dim.stab.wr.glasso <- dimensionStability(boot.glasso.wr)
+```
+
+### Standardized node strenght
+
+```{r network-loadings-wr}
+# Compute standardized node strength 
+net.loads(ega.wr.glasso)$std
+```
+
+# EGA x CFA
+
+```{r }
+
+cfa.ega <- CFA(ega.obj = ega.wr.glasso, data = arm1, estimator="WLSMV", plot.CFA = TRUE)
+
+```
+
+```{r}
+model_sas <- "
+
+SAS =~ sas_1 + sas_2 + sas_3 + sas_4 + sas_5 + sas_6
+
+"
+#sas_1 ~~ sas_2
+fit_sas <- lavaan::cfa(model = model_sas,
+                        std.lv = TRUE, ordered=TRUE, data = items)
+
+semTools::fitmeasures(fit_sas, 
+                         fit.measures = c("rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "cfi",
+                                          "rmsea.robust", "rmsea.ci.lower.robust", "rmsea.ci.upper.robust", "tli.robust", "cfi.robust", "srmr_bentler"))
+```
+
+```{r mod-indices}
+lavaan::modindices(fit_sas) |> 
+  dplyr::arrange(-mi) |> 
+  head(10) |> 
+  kbl() |> 
+  kable_paper()
+```

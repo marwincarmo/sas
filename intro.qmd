@@ -1,9 +1,5 @@
 # Introduction
 
-This is a book created from markdown and executable code.
+Insomnia is a disorder related to dissatisfaction with the duration or quality of sleep. It can be a source of distress and impairment by decreasing productivity and lowering energy to engage in social activities [@americanpsychiatricassociation2013]. Prolonged exposure is associated with a higher risk of adverse outcomes on mental health [@johnson2006; @taylor2005] and cognitive functioning [@fortier-brochu2012]. 
 
-See @knuth84 for additional discussion of literate programming.
-
-```{r}
-1 + 1
-```
+Cognitive and behavioral models of insomnia emphasize the role of sleep-related cognitions as maintainers of insomnia. Cognitive arousal is crucial to several behavioral models of insomnia as a maintainer of the disorder [@espie2006; @harvey2002; @lundh2005; @morin1993; @ong2012; @perlis1997]. Cognitive-behavioral treatments target modifying habits, routines, and ineffective beliefs about sleep, which correlates with objective and subjective improvements in sleep [@harvey2014; @montserratsanchez-ortuno2010]. Despite its known effectiveness in insomnia treatment, some patients gain little from the cognitive-behavioral approaches [@dalrymple2010]. An alternative treatment for insomnia is Acceptance and Commitment Therapy (ACT), which also focuses on cognitions (their role rather than contents or topographies) but promotes acceptance of feelings and thoughts related to symptoms rather than control [@hayes2011acceptance]. 
