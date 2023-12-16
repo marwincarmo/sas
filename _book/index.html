@@ -92,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Validation of the Sleep Acceptance Scale</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/hadley/r4ds/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://marwincarmo.github.io/sas/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
 </div>
     </div>
       </div>
@@ -205,11 +205,11 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>This book was developed as the final project of <a href="https://psychology.ucdavis.edu/people/edbeck">Dr.&nbsp;Emorie Beck</a>’s course <a href="https://emoriebeck.github.io/psc290-data-FQ23/">Data Cleaning and Management</a>, taught at University of California, Davis in the Fall quarter of 2023.</p>
+<p>This page was developed as the final project of <a href="https://psychology.ucdavis.edu/people/edbeck">Dr.&nbsp;Emorie Beck</a>’s course <a href="https://emoriebeck.github.io/psc290-data-FQ23/">Data Cleaning and Management</a>, taught at University of California, Davis in the Fall quarter of 2023.</p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>This project aims to create a comprehensive pipeline for validating the Sleep Acceptance Scale (SAS), an instrument designed to evaluate people’s acceptance of sleep problems. The data for this project come from adults between 18 and 59 living in Brazil who were surveyed online using REDCap.</p>
-<p>In this book I do not discuss in depth the results of the analyses as it is expected to be developed in a future publication in a scientific journal. What will be show in this project are the analyses’ code and outputs that usually do not fit into a traditional scientific publication.</p>
+<p>Here I do not discuss in depth the results of the analyses as it is expected to be developed in a future publication in a scientific journal. What will be show in this project are the analyses’ code and outputs that usually do not fit into a traditional scientific publication.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -224,9 +224,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="reflection" class="level2">
 <h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
-<p>Reflect on what you learned in this project / class. What course concepts did you draw on? What barriers did you have to overcome to complete the project? If you were to start over, would you do it the same way again or take a different strategy? These are just some examples of questions to consider in reflecting on your project. There is no minimum of maximum length, but my guess is 2-3 paragraphs.</p>
-<p>One of the main challenges was creating a report file that could be seamlessly executed and understandable by machines and humans because of the multiple analyses involved. However with the use of Quarto,</p>
-<p>To start, it was necessary to employ a project based approach, where the files were organized in a hierarchical folder structre. To</p>
+<p>Several layers of concepts taught in the course were used to create this project. Because the ultimate goal was to create a reproducible analysis script, it was necessary that it was constructed in a project based approach, organizing the files in a hierarchical folder structure. In order to have the data set ready for the analyses, it had to undergo some steps such as the transformation of date columns, creation of new variables based on existing ones, re-coding, treatment of missing values, pivoting, string manipulation and others. Functions for grouping, selecting and filtering were also used frequently throughout the project.</p>
+<p>Although the end product have accomplished its goal, this project has limitations that were not addressed during its development and room for improvement in the future. For instance, it was not pre-registered. Although the current analysis plan has changed in some aspects compared to the initial proposition, having these differences documented would facilitate the inspection of those changes by reviewers and interested readers. Another fundamental limitation is the lack of a data dictionary and a codebook. These files are important to ease the re-use of the data and should be developed in a near future. This project also lacks comments on the code chunks. Adding comments will help future re-analyses and is instructive for people interested in using pieces of the code in their own work.</p>
+<p>Despite my previous familiarity with R, tidyverse functions, and reproducible documents, this was the first project done aiming to adopt a totally open and reproducible framework.</p>
 
 
 </section>

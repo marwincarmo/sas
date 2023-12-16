@@ -242,7 +242,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, sharp corners, breakable, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, sharp corners, frame hidden, interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -258,7 +258,7 @@
 
 \markboth{Preface}{Preface}
 
-This book was developed as the final project of
+This page was developed as the final project of
 \href{https://psychology.ucdavis.edu/people/edbeck}{Dr.~Emorie Beck}'s
 course \href{https://emoriebeck.github.io/psc290-data-FQ23/}{Data
 Cleaning and Management}, taught at University of California, Davis in
@@ -276,8 +276,8 @@ people's acceptance of sleep problems. The data for this project come
 from adults between 18 and 59 living in Brazil who were surveyed online
 using REDCap.
 
-In this book I do not discuss in depth the results of the analyses as it
-is expected to be developed in a future publication in a scientific
+Here I do not discuss in depth the results of the analyses as it is
+expected to be developed in a future publication in a scientific
 journal. What will be show in this project are the analyses' code and
 outputs that usually do not fit into a traditional scientific
 publication.
@@ -326,7 +326,7 @@ outputs saved to optimize the rendering of the document.
 The project was also made as a
 \href{https://github.com/marwincarmo/sas}{Github repository}, available
 publicly. Once finished, the book was hosted as a website on Github
-Pages, available at
+Pages, available at \url{https://marwincarmo.github.io/sas/}
 
 \hypertarget{reflection}{%
 \section*{Reflection}\label{reflection}}
@@ -334,17 +334,33 @@ Pages, available at
 
 \markright{Reflection}
 
-Reflect on what you learned in this project / class. What course
-concepts did you draw on? What barriers did you have to overcome to
-complete the project? If you were to start over, would you do it the
-same way again or take a different strategy? These are just some
-examples of questions to consider in reflecting on your project. There
-is no minimum of maximum length, but my guess is 2-3 paragraphs.
+Several layers of concepts taught in the course were used to create this
+project. Because the ultimate goal was to create a reproducible analysis
+script, it was necessary that it was constructed in a project based
+approach, organizing the files in a hierarchical folder structure. In
+order to have the data set ready for the analyses, it had to undergo
+some steps such as the transformation of date columns, creation of new
+variables based on existing ones, re-coding, treatment of missing
+values, pivoting, string manipulation and others. Functions for
+grouping, selecting and filtering were also used frequently throughout
+the project.
 
-This project involves multiple analyses that use different packages and
-create various objects in the work environment. The main challenge is
-creating a report file that can be seamlessly executed and easily
-understandable by machines and humans.
+Although the end product have accomplished its goal, this project has
+limitations that were not addressed during its development and room for
+improvement in the future. For instance, it was not pre-registered.
+Although the current analysis plan has changed in some aspects compared
+to the initial proposition, having these differences documented would
+facilitate the inspection of those changes by reviewers and interested
+readers. Another fundamental limitation is the lack of a data dictionary
+and a codebook. These files are important to ease the re-use of the data
+and should be developed in a near future. This project also lacks
+comments on the code chunks. Adding comments will help future
+re-analyses and is instructive for people interested in using pieces of
+the code in their own work.
+
+Despite my previous familiarity with R, tidyverse functions, and
+reproducible documents, this was the first project done aiming to adopt
+a totally open and reproducible framework.
 
 \bookmarksetup{startatroot}
 
@@ -605,12 +621,12 @@ Sample size: 1345.
 \toprule
   & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max &   \\
 \midrule
-sas\_1 & 7 & 0 & \num{3.6} & \num{1.9} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9889c79b9.pdf}\\
-sas\_2 & 7 & 0 & \num{3.4} & \num{1.8} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e984da451d.pdf}\\
-sas\_3 & 7 & 0 & \num{3.7} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9846ae1fef.pdf}\\
-sas\_4 & 7 & 0 & \num{3.9} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e98171a49f.pdf}\\
-sas\_5 & 7 & 0 & \num{3.6} & \num{2.0} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9838076f7.pdf}\\
-sas\_6 & 7 & 0 & \num{4.2} & \num{2.3} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1e9856f12452.pdf}\\
+sas\_1 & 7 & 0 & \num{3.6} & \num{1.9} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54164e50a7.pdf}\\
+sas\_2 & 7 & 0 & \num{3.4} & \num{1.8} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b544816494f.pdf}\\
+sas\_3 & 7 & 0 & \num{3.7} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5413746ea1.pdf}\\
+sas\_4 & 7 & 0 & \num{3.9} & \num{2.2} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5456c1665d.pdf}\\
+sas\_5 & 7 & 0 & \num{3.6} & \num{2.0} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b5414b32a32.pdf}\\
+sas\_6 & 7 & 0 & \num{4.2} & \num{2.3} & \num{1.0} & \num{4.0} & \num{7.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/marwi/OneDrive/Documentos/Rprojects/papers/sas/02_data-screening_files/figure-latex/hist_1b54653153d.pdf}\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1617,13 +1633,6 @@ Variable & 1 & 2 & 3 & 4 & 5 & 6\\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\bookmarksetup{startatroot}
-
-\hypertarget{summary}{%
-\chapter{Summary}\label{summary}}
-
-In summary, this analyses indicated that the Sleep Acceptance Scale has
 
 \bookmarksetup{startatroot}
 
