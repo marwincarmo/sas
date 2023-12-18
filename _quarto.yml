@@ -5,7 +5,7 @@ book:
   title: "Validation of the Sleep Acceptance Scale"
   author: 
     - name: "Marwin Carmo, University of California, Davis"
-  repo-url: https://marwincarmo.github.io/sas/
+  repo-url: https://github.com/marwincarmo/sas
   
   date: "12/14/2023"
   chapters:
@@ -24,8 +24,8 @@ csl: bibliography/apa7.csl
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 editor: source
 

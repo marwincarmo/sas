@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: "1b842ac0-8442-4cfb-a1a4-25a05a9a4e48"
+      url: "https://marwin.quarto.pub/sas/"
