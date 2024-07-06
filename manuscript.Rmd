@@ -1,0 +1,11 @@
+---
+title: "Relatório Klaique Araujo"
+author: "Consultor: Marwin Carmo"
+output:
+  word_document:
+    reference_docx: ../report-templates/word-styles-reference-01.docx
+lang: pt-BR
+bibliography      : ["../ext/bib/references.bib", "../ext/bib/r-references.bib"]
+csl: ../ext/apa7.csl
+---
+
